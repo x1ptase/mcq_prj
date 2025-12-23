@@ -1,0 +1,89 @@
+:root {
+    --primary: #007bff;
+    --success: #28a745;
+    --danger: #dc3545;
+    --bg: #f0f2f5;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    margin: 0;
+    padding: 0;
+}
+
+.main-wrapper {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.quiz-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+}
+
+h3 { margin-top: 0; color: #333; }
+
+.option-item {
+    display: block;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.option-item input { display: none; }
+
+.box {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border: 2px solid #eef0f2;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.box .letter {
+    font-weight: bold;
+    margin-right: 15px;
+    color: var(--primary);
+}
+
+/* Hiệu ứng màu sắc */
+.box.correct {
+    background-color: #d4edda;
+    border-color: var(--success);
+    color: #155724;
+}
+
+.box.wrong {
+    background-color: #f8d7da;
+    border-color: var(--danger);
+    color: #721c24;
+}
+
+.btn-refresh {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 12px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-refresh:hover { background: #5a6268; }
+
+/* Thêm dòng này vào style.css */
+.quiz-card h3 {
+    white-space: pre-line; /* Tự động xuống dòng khi gặp ký tự xuống dòng từ SQL */
+}

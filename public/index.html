@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Trắc Nghiệm SQL Server</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <header>
+            <h1>BÀI KIỂM TRA TỔNG HỢP</h1>
+            <p>Chọn đáp án đúng cho từng câu hỏi bên dưới</p>
+        </header>
+
+        <div id="quiz-container">
+            <div class="loader">Đang tải câu hỏi từ SQL Server...</div>
+        </div>
+
+        <div class="footer">
+            <button onclick="window.location.reload()" class="btn-refresh">Làm lại bài</button>
+        </div>
+    </div>
+
+    <script>
+        let questionsData = [];
+
+        async function initQuiz() {
+            try {
+                const response = await fetch('/get-questions');
+                questionsData = await response.json();
+                renderQuiz();
+            } catch (err) {
+                document.getElementById('quiz-container').innerHTML = "Lỗi kết nối Server!";
+            }
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = ""; // Xóa loader
+
+            questionsData.forEach((q, index) => {
+                const section = document.createElement('div');
+                section.className = 'quiz-card';
+                section.id = `card-${q.id}`;
+
+                section.innerHTML = `
+                    <h3>Câu ${index + 1}: ${q.question}</h3>
+                    <div class="options-list">
+                        ${['A', 'B', 'C', 'D'].map(label => `
+                            <label class="option-item">
+                                <input type="radio" name="question_${q.id}" 
+                                       onchange="handleSelect(${q.id}, '${label}')">
+                                <div class="box">
+                                    <span class="letter">${label}</span>
+                                    <span class="text">${q['option_' + label.toLowerCase()]}</span>
+                                </div>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(section);
+            });
+        }
+
+        async function handleSelect(qId, selected) {
+            const question = questionsData.find(q => q.id === qId);
+            const card = document.getElementById(`card-${qId}`);
+            const boxes = card.querySelectorAll('.box');
+
+            // Reset màu các đáp án cũ
+            boxes.forEach(b => b.classList.remove('correct', 'wrong'));
+
+            // Tìm box đang được chọn
+            const selectedBox = card.querySelector(`input:checked`).nextElementSibling;
+
+            // Kiểm tra đúng/sai
+            if (selected === question.correct_answer) {
+                selectedBox.classList.add('correct');
+            } else {
+                selectedBox.classList.add('wrong');
+            }
+
+            // Gửi dữ liệu về SQL Server ngầm (không cần load lại trang)
+            fetch('/submit', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `questionId=${qId}&answer=${selected}`
+            });
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
