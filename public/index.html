@@ -10,16 +10,16 @@
 
     <div class="main-wrapper">
         <header>
-            <h1>BÀI KIỂM TRA TỔNG HỢP</h1>
-            <p>Chọn đáp án đúng cho từng câu hỏi bên dưới</p>
+            <h1>CSD201 Questions</h1>
+            <p>Choose correct answer for each question</p>
         </header>
 
         <div id="quiz-container">
-            <div class="loader">Đang tải câu hỏi từ SQL Server...</div>
+            <div class="loader">Loading questions from SQL Server...</div>
         </div>
 
         <div class="footer">
-            <button onclick="window.location.reload()" class="btn-refresh">Làm lại bài</button>
+            <button onclick="window.location.reload()" class="btn-refresh">Refresh</button>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
 
         function renderQuiz() {
             const container = document.getElementById('quiz-container');
-            container.innerHTML = ""; // Xóa loader
+            container.innerHTML = ""; 
 
             questionsData.forEach((q, index) => {
                 const section = document.createElement('div');
@@ -69,20 +69,16 @@
             const card = document.getElementById(`card-${qId}`);
             const boxes = card.querySelectorAll('.box');
 
-            // Reset màu các đáp án cũ
             boxes.forEach(b => b.classList.remove('correct', 'wrong'));
 
-            // Tìm box đang được chọn
             const selectedBox = card.querySelector(`input:checked`).nextElementSibling;
 
-            // Kiểm tra đúng/sai
             if (selected === question.correct_answer) {
                 selectedBox.classList.add('correct');
             } else {
                 selectedBox.classList.add('wrong');
             }
 
-            // Gửi dữ liệu về SQL Server ngầm (không cần load lại trang)
             fetch('/submit', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},

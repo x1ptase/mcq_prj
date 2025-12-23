@@ -56,7 +56,6 @@ h3 { margin-top: 0; color: #333; }
     color: var(--primary);
 }
 
-/* Hiệu ứng màu sắc */
 .box.correct {
     background-color: #d4edda;
     border-color: var(--success);
@@ -83,7 +82,7 @@ h3 { margin-top: 0; color: #333; }
 
 .btn-refresh:hover { background: #5a6268; }
 
-/* Thêm dòng này vào style.css */
+/* auto enter when met enter key from SQL */
 .quiz-card h3 {
-    white-space: pre-line; /* Tự động xuống dòng khi gặp ký tự xuống dòng từ SQL */
+    white-space: pre-line; 
 }
