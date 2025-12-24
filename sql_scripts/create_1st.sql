@@ -19,9 +19,12 @@ CREATE TABLE QuizQuestions (
 );
 
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
-('The complexity of heap sort is', 'O(nlogn)', 'O(logn)', 'O(n)', 'O(n^2)', 'A'),
-('Select the statement that is most correct
-Basically, the commplexity of inserting a node before a given node in a doubly linked lists is', 'O(1)', 'O(n)', 'O(logn)', 'O(n^2)', 'A');
+('State True or False:
+Definition of a balanced tree: "A balanced tree is one whose root has many more left descendants than right descendants, or vice versa.', 'True', 'False', '','', 'B'),
+('State True or False: "Recursion bears substantial overhead. Each time the program calls a method, the system must assign space for all of the method local variables and parameters. This can consume considerable memory and requires extra time to manage the additional space',
+'True', 'False', '','','A'),
+('In a linked list, the tail node is introduced for performance purpose only.', 'True', 'False', '', '', 'A'),
+('State True or False: In a singly-linked list every element contains some data and a link to the next element, which allows to keep the structure.', 'True', 'False', '', '', 'A');
 
 
 
