@@ -42,16 +42,29 @@
             const container = document.getElementById('quiz-container');
             container.innerHTML = questions.map((q, i) => {
                 const isMulti = q.correct_answer.trim().length > 1;
+                
+                // Kiểm tra xem q.question có phải là tên file ảnh (.png, .jpg, .svg) không
+                const isImageQuestion = q.question.match(/\.(jpeg|jpg|gif|png|svg)$/i);
+                
+                // Nếu là ảnh, tạo thẻ <img>, nếu không thì hiển thị chữ bình thường
+                const questionContent = isImageQuestion 
+                    ? `<div class="image-question">
+                        <p class="q-num">Question ${i+1}:</p>
+                        <img src="/img/${q.question}" alt="Question Image" class="main-q-img">
+                    </div>`
+                    : `<div class="q-text">Question ${i+1}: ${q.question}</div>`;
+
                 return `
                 <div class="quiz-card" id="card-${q.id}">
-                    <div class="q-text">Câu ${i+1}: ${q.question}</div>
+                    ${questionContent}
+
                     <div class="options">
                         ${['A','B','C','D'].map(l => `
                             <label class="opt">
                                 <input type="${isMulti ? 'checkbox' : 'radio'}" 
-                                       name="q${q.id}" 
-                                       value="${l}" 
-                                       onchange="checkInstant(${q.id}, '${l}')">
+                                    name="q${q.id}" 
+                                    value="${l}" 
+                                    onchange="checkInstant(${q.id}, '${l}')">
                                 <div class="box"><b>${l}.</b> ${q['option_'+l.toLowerCase()]}</div>
                             </label>
                         `).join('')}

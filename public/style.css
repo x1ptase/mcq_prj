@@ -54,4 +54,46 @@ header { text-align: center; margin-bottom: 30px; }
     background-color: #5a6268;
 }
 
-/* Giữ nguyên các class .box.correct và .box.wrong từ bước trước */
+.quiz-image {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.quiz-image img {
+    max-width: 100%;    /* Đảm bảo ảnh không tràn khung */
+    max-height: 400px;  /* Giới hạn chiều cao để không phải cuộn quá nhiều */
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.image-question {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.q-num {
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.main-q-img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    padding: 5px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Đảm bảo các box đáp án nằm dưới ảnh rõ ràng */
+.options {
+    margin-top: 15px;
+}

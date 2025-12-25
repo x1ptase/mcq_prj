@@ -18,6 +18,11 @@ In a singly-linked list, there is no efficient way to insert a node before a giv
 ('State True or False: In circular linked-list, it is always required to define both head and tail nodes.', 'True', 'False', '', '', 'B');
 
 
+---ALGORITHM QUESTION---
+INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
+
+
+
 ---COMPLEXITY OF ALGORITHMS---
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
 ('The complexity of heap sort is', 'O(nlog n)', 'O(log n)', 'O(n)', 'O(n^2)', 'A'),
@@ -54,7 +59,39 @@ N'In a singly-linked list we can insert a node after a given node with time comp
 N'In a singly-linked list we can insert a node before a given node in the middle of the list with time complexity O(1)', 
 'AB');
 
+---ARRAY---
+INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES  
+('pic134.png', '(2)', '(4)', '(3)', '(1)', 'A'),
+('pic135.png', '(2)', '(4)', '(3)', '(1)', 'D'),
+('pic136.png', '(4)', '(3)', '(1)', '(2)', 'A'),
+('pic137.png', '(3)', '(1)', '(2)', '(4)', 'B'),
+('pic138.png', '(2)', '(1)', '(3)', '(4)', 'A'),
+('pic139.png', '(3)', '(4)', '(1)', '(2)', 'D'),
+('pic140.png', '(3)', '(4)', '(2)', '(1)', 'D'),
+('pic141.png', '(4)', '(3)', '(2)', '(1)', 'D'),
+('pic142.png', '(3)', '(1)', '(4)', '(2)', 'B'),
+('pic143.png', '(1)', '(2)', '(3)', '(4)', 'C'),
+('pic144.png', '(1)', '(3)', '(2)', '(4)', 'B'),
+('pic145.png', '(4)', '(2)', '(1)', '(3)', 'D'),
+('pic146.png', '(3)', '(4)', '(2)', '(1)', 'D'),
+('pic147.png', '(3)', '(1)', '(4)', '(2)', 'C'),
+('pic148.png', '(2)', '(1)', '(3)', '(4)', 'D'),
+('pic149.png', '(1)', '(4)', '(2)', '(3)', 'C');
 
+
+--GRAPH QUESTION---
+INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
+('pic151.png', '4', '2', '5', '3', 'B'),
+('pic152.png', '5', '3', '2', '1', 'D'),
+('pic153.png', '4', '5', '2', '3', 'D'),
+('pic154.png', '2', '4', '1', '5', 'C'),
+('pic155.png', '3', '4', '1', '5', 'A'),
+('pic156.png', '4', '2', '5', '1', 'B'),
+('pic157.png', '26', '18', '24', '27', 'D'),
+('pic158.png', '38', '24', '40', '18', 'A'),
+('pic159.png', '43', '42', '44', '39', 'B'),
+('pic160.png', '37', '42', '40', '43', 'B'),
+('pic161.png', '45', '40', '42', '39', 'D');
 
 --LINH TINH---
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
