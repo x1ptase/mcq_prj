@@ -2,91 +2,110 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz App</title>
+    <title>Algorithm Complexity Quiz - Instant & Refresh</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="main-wrapper">
         <header>
-            <h1>CSD201 Questions</h1>
-            <p>Choose correct answer for each question</p>
+            <h1>COMPLEXITY OF ALGORITHMS</h1>
+            <div class="control-panel">
+                <button onclick="refreshQuiz()" class="btn-refresh-top">🔄 Làm mới bài thi</button>
+            </div>
         </header>
 
-        <div id="quiz-container">
-            <div class="loader">Loading questions from SQL Server...</div>
-        </div>
-
-        <div class="footer">
-            <button onclick="window.location.reload()" class="btn-refresh">Refresh</button>
-        </div>
+        <div id="quiz-container">Đang tải câu hỏi...</div>
     </div>
 
     <script>
-        let questionsData = [];
+        let questions = [];
 
-        async function initQuiz() {
+        // Tải câu hỏi lần đầu
+        async function load() {
             try {
-                const response = await fetch('/get-questions');
-                questionsData = await response.json();
-                renderQuiz();
-            } catch (err) {
-                document.getElementById('quiz-container').innerHTML = "Lỗi kết nối Server!";
+                const res = await fetch('/get-questions');
+                questions = await res.json();
+                render();
+            } catch (e) { document.getElementById('quiz-container').innerText = "Lỗi tải dữ liệu!"; }
+        }
+
+        // Hàm Reset toàn bộ bài
+        function refreshQuiz() {
+            // Hiệu ứng xác nhận nhẹ
+            if(confirm("Bạn có muốn xóa hết kết quả và làm lại từ đầu không?")) {
+                render(); // Vẽ lại giao diện từ mảng questions đã lưu
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
-        function renderQuiz() {
+        function render() {
             const container = document.getElementById('quiz-container');
-            container.innerHTML = ""; 
-
-            questionsData.forEach((q, index) => {
-                const section = document.createElement('div');
-                section.className = 'quiz-card';
-                section.id = `card-${q.id}`;
-
-                section.innerHTML = `
-                    <h3>Question ${index + 1}: ${q.question}</h3>
-                    <div class="options-list">
-                        ${['A', 'B', 'C', 'D'].map(label => `
-                            <label class="option-item">
-                                <input type="radio" name="question_${q.id}" 
-                                       onchange="handleSelect(${q.id}, '${label}')">
-                                <div class="box">
-                                    <span class="letter">${label}</span>
-                                    <span class="text">${q['option_' + label.toLowerCase()]}</span>
-                                </div>
+            container.innerHTML = questions.map((q, i) => {
+                const isMulti = q.correct_answer.trim().length > 1;
+                return `
+                <div class="quiz-card" id="card-${q.id}">
+                    <div class="q-text">Câu ${i+1}: ${q.question}</div>
+                    <div class="options">
+                        ${['A','B','C','D'].map(l => `
+                            <label class="opt">
+                                <input type="${isMulti ? 'checkbox' : 'radio'}" 
+                                       name="q${q.id}" 
+                                       value="${l}" 
+                                       onchange="checkInstant(${q.id}, '${l}')">
+                                <div class="box"><b>${l}.</b> ${q['option_'+l.toLowerCase()]}</div>
                             </label>
                         `).join('')}
                     </div>
-                `;
-                container.appendChild(section);
-            });
+                    <div id="msg-${q.id}" class="feedback-msg"></div>
+                </div>`;
+            }).join('');
         }
 
-        async function handleSelect(qId, selected) {
-            const question = questionsData.find(q => q.id === qId);
+        // Logic checkInstant giữ nguyên như yêu cầu trước của bạn
+        function checkInstant(qId, label) {
+            const question = questions.find(q => q.id === qId);
             const card = document.getElementById(`card-${qId}`);
-            const boxes = card.querySelectorAll('.box');
+            const msg = document.getElementById(`msg-${qId}`);
+            const correctAns = question.correct_answer.trim().toUpperCase();
+            
+            const selectedInputs = Array.from(card.querySelectorAll(`input[name="q${qId}"]:checked`));
+            const selectedStr = selectedInputs.map(i => i.value).sort().join('');
 
-            boxes.forEach(b => b.classList.remove('correct', 'wrong'));
+            card.querySelectorAll('.box').forEach(b => b.classList.remove('correct', 'wrong'));
 
-            const selectedBox = card.querySelector(`input:checked`).nextElementSibling;
-
-            if (selected === question.correct_answer) {
-                selectedBox.classList.add('correct');
+            if (correctAns.length === 1) {
+                const selectedInput = card.querySelector(`input[name="q${qId}"]:checked`);
+                const box = selectedInput.nextElementSibling;
+                if (selectedStr === correctAns) {
+                    box.classList.add('correct');
+                    msg.innerHTML = "Chính xác! ✔️";
+                    msg.style.color = "green";
+                } else {
+                    box.classList.add('wrong');
+                    msg.innerHTML = `Sai rồi. Đáp án đúng: ${correctAns}`;
+                    msg.style.color = "red";
+                }
+                card.querySelectorAll('input').forEach(i => i.disabled = true);
             } else {
-                selectedBox.classList.add('wrong');
+                if (selectedStr.length === correctAns.length) {
+                    if (selectedStr === correctAns) {
+                        selectedInputs.forEach(i => i.nextElementSibling.classList.add('correct'));
+                        msg.innerHTML = "Chính xác! ✔️";
+                        msg.style.color = "green";
+                    } else {
+                        selectedInputs.forEach(i => i.nextElementSibling.classList.add('wrong'));
+                        msg.innerHTML = `Sai rồi. Đáp án đúng: ${correctAns}`;
+                        msg.style.color = "red";
+                    }
+                    card.querySelectorAll('input').forEach(i => i.disabled = true);
+                } else {
+                    msg.innerHTML = `Hãy chọn đủ ${correctAns.length} đáp án...`;
+                    msg.style.color = "orange";
+                }
             }
-
-            fetch('/submit', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                body: `questionId=${qId}&answer=${selected}`
-            });
         }
 
-        window.onload = initQuiz;
+        window.onload = load;
     </script>
 </body>
 </html>

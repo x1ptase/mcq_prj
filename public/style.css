@@ -1,88 +1,57 @@
-:root {
-    --primary: #007bff;
-    --success: #28a745;
-    --danger: #dc3545;
-    --bg: #f0f2f5;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg);
-    margin: 0;
-    padding: 0;
-}
-
-.main-wrapper {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.quiz-card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    margin-bottom: 25px;
-}
-
-h3 { margin-top: 0; color: #333; }
-
-.option-item {
-    display: block;
-    margin-bottom: 12px;
-    cursor: pointer;
-}
-
-.option-item input { display: none; }
-
-.box {
-    display: flex;
-    align-items: center;
-    padding: 12px 20px;
-    border: 2px solid #eef0f2;
-    border-radius: 8px;
-    transition: 0.2s;
-}
-
-.box .letter {
+body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+.main-wrapper { max-width: 800px; margin: auto; }
+header { text-align: center; margin-bottom: 30px; }
+.quiz-card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.q-text { font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; white-space: pre-line; }
+.opt { display: block; margin-bottom: 10px; cursor: pointer; position: relative; }
+.opt input { position: absolute; opacity: 0; width: 100%; height: 100%; cursor: pointer; z-index: 2; }
+.box { padding: 12px; border: 2px solid #e4e6eb; border-radius: 8px; transition: 0.3s; z-index: 1; }
+.opt input:checked + .box { border-color: #007bff; background: #e7f3ff; }
+.box.correct { background: #d4edda !important; border-color: #28a745 !important; }
+.box.wrong { background: #f8d7da !important; border-color: #dc3545 !important; }
+#btn-submit { width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+.feedback-msg {
+    margin-top: 15px;
     font-weight: bold;
-    margin-right: 15px;
-    color: var(--primary);
+    font-size: 1rem;
+    min-height: 24px;
 }
 
 .box.correct {
-    background-color: #d4edda;
-    border-color: var(--success);
+    background: #d4edda !important;
+    border-color: #28a745 !important;
     color: #155724;
 }
 
 .box.wrong {
-    background-color: #f8d7da;
-    border-color: var(--danger);
+    background: #f8d7da !important;
+    border-color: #dc3545 !important;
     color: #721c24;
 }
 
-.btn-refresh {
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-    padding: 12px;
-    background: #6c757d;
+/* Hiệu ứng khi di chuột qua đáp án */
+.opt:hover .box {
+    border-color: #007bff;
+}
+
+.control-panel {
+    margin: 20px 0;
+    text-align: right;
+}
+
+.btn-refresh-top {
+    padding: 10px 20px;
+    background-color: #6c757d;
     color: white;
     border: none;
     border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background 0.3s;
 }
 
-.btn-refresh:hover { background: #5a6268; }
-
-/* auto enter when met enter key from SQL */
-.quiz-card h3 {
-    white-space: pre-line; 
+.btn-refresh-top:hover {
+    background-color: #5a6268;
 }
+
+/* Giữ nguyên các class .box.correct và .box.wrong từ bước trước */

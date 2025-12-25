@@ -1,33 +1,58 @@
-﻿CREATE DATABASE quiz_db;
-GO
-USE quiz_db;
-GO
-CREATE TABLE UserResponses (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    selected_option CHAR(1),
-    created_at DATETIME DEFAULT GETDATE()
-);
+﻿
 
-CREATE TABLE QuizQuestions (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    question NVARCHAR(MAX),
-    option_a NVARCHAR(255),
-    option_b NVARCHAR(255),
-    option_c NVARCHAR(255),
-    option_d NVARCHAR(255),
-    correct_answer CHAR(1)
-);
-
+---TRUE FALSE QUESTION---
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
+('State True or False: 
+Definition of a balanced tree: "A balanced tree is one whose root has many more left descendents than right descendents, or vice versa."', 'True', 'False', '','','B'),
 ('State True or False:
-Definition of a balanced tree: "A balanced tree is one whose root has many more left descendants than right descendants, or vice versa.', 'True', 'False', '','', 'B'),
-('State True or False: "Recursion bears substantial overhead. Each time the program calls a method, the system must assign space for all of the method local variables and parameters. This can consume considerable memory and requires extra time to manage the additional space',
-'True', 'False', '','','A'),
-('In a linked list, the tail node is introduced for performance purpose only.', 'True', 'False', '', '', 'A'),
-('State True or False: In a singly-linked list every element contains some data and a link to the next element, which allows to keep the structure.', 'True', 'False', '', '', 'A');
+"Recursion bears substantial overhead. Each time the program calls a method, the system must assign space for all of the methods local variables and parameters. This can consume considerable memory and requires extra time to manage the additional space"', 'True', 'False', '', '', 'A'),
+('In a linked list, the tail node is introduced for performance purpose only.', 'False', 'True', '', '', 'B'),
+('State True or False:
+In a singly-linked list every element contains some data and a link to the next element, which allows to keep the structure.', 'True', 'False', '', '', 'A'),
+('Run length encoding is a lossless compression method in which repeated occurrences of a symbol are replaced by one occurrence of the symbol followed by the number of occurrences', 'True', 'False', '', '', 'A'),
+('State True or False:
+In a singly-linked list, there is no efficient way to insert a node before a given node in the middle or at the end of the list, but we can insert a node after a given node or at the beginning of the list with time complexity O(1)', 'False', 'True', '', '', 'B'),
+('In Huffman coding, both the sender and receiver must have a copy of the same code in order for the decoded file to match the encoded file.', 'True', 'False', '', '', 'A'),
+('State True or False:
+"In a binary search tree, all the nodes that are left descendants of node A have key values greater than A; all the nodes that are A"s right descendants have key values less than (or equal to) A."', 'True', 'False', '', '', 'B'),
+('State True or False: In circular linked-list, it is always required to define both head and tail nodes.', 'True', 'False', '', '', 'B');
 
 
-
+---COMPLEXITY OF ALGORITHMS---
+INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
+('The complexity of heap sort is', 'O(nlog n)', 'O(log n)', 'O(n)', 'O(n^2)', 'A'),
+('Select the statement that is most correct.
+Basically, the complexity of inserting a node before a given node in a doubly linked lists is', 'O(1)', 'O(n)', 'O(log n)', 'O(n^2)', 'A'),
+('Select the statement that is most correct.
+Basically, the complexity of inserting new element before a given node in the middle of a singly linked lists is', 'O(n^2)', 'O(1)', 'O(log n)', 'O(n)', 'D'),
+(N'Given a search() method in a binary search tree:
+Node search(int x) {
+  Node p = root;
+  while(p != null && p.info != x)
+    if(x < p.info) p = p.left;
+    else p = p.right;
+  return(p);
+}
+The complexity of this algorithm is:', 
+'O(n^2)', 'O(n)', 'O(log n)', 'O(nlog n)', 'C'),
+('Select the most correct statement:',
+'In all cases the insertion sort is O(n^2).', 'The complexity of insertion sort is O(n^2), in the best case it is O(n)', 'The complexity of insertion sort is O(nlog n), in the best case it is O(n).', 'The complexity of insertion sort is O(n^2), in the best case it is O(nlog n).', 'B'),
+('Select the most correct statement:',
+'In all cases the selection sort is O(n^2).', 'In the worst case the selection sort is O(n^2), in the best case it is O(n).', 'In the worst case the selection sort is O(n^2), in the best case it is O(nlog n).', 'In the average case the selection sort is O(n^2), in the best case it is O(nlog n).', 'A'),
+('Select the most correct statement about the complexity of insertion sort',
+'Both best and worst cases are O(n^2)', 'The best case is O(n), and the worst case is O(nlogn)', 'The best case is O(nlogn), and the worst case is O(n^2)', 'The best case is O(n), and the worst case is O(n^2)', 'D'),
+('Select the most correct statement about the complexity of selection sort', 
+'Both best and worst cases are O(n^2)', 'The best case is O(n), and the worst case is O(n^2)', 'The best case is O(n), and the average case is O(nlog n)', 'The best case is O(n), and the average case is O(n^2)', 'A'),
+('Select the most correct statement about the complexity of heapsort',
+'The best case is O(n), and the worst case is O(n^2)', 'The best case is O(n), and the worst case is O(nlog n)', 'Best case is O(nlog n), the worst case is O(n^2)', 'Both best and worst cases are O(nlog n)', 'D'),
+('Select the correct statement.
+(full binary tree = proper binary tree = 2-tree)', 'Every complete binary tree is also a full binary tree.', 'Every binary tree is either complete or full.', 'Every full binary tree is also a complete binary tree.', 'No binary tree is both complete and full.', 'A'),
+(N'Which statements are true (select two):', 
+N'In a singly-linked list there is no efficient way to insert a node before a given node in the middle of the list (O(1)).', 
+N'In a singly-linked list we can insert a node after a given node with time complexity O(1)', 
+N'In a singly-linked list we can insert a node after a given node with time complexity O(n)', 
+N'In a singly-linked list we can insert a node before a given node in the middle of the list with time complexity O(1)', 
+'AB');
 
 
 
@@ -54,11 +79,3 @@ Which of the following applications may not use a queue?', 'Store a waiting list
 ('Select the most suitable statement about a binary search tree.', 'It is necessary to build a tree with optimized height to stimulate searching operation.', 'In a BST, all nodes that are left descendants of node A have values greater than A; all the nodes that are As right descendants have key values less than (or equal to) A', 'The main purpose of balancing a tree is to keep the tree in good shape.', 'For better searching performance, a tree should be in back-bone shape', 'A'),
 ('Specify the correct statement about the coalesced chaining method for handling collision (select the best answer).', 'In coalesced hashing, the linked list is created inside the hash table and a colliding key is put in the first available position if the table', 'In coalesced hashing, the linked list is created outside the hash table and a colliding key is put in the list connected to the colliding position if the table', 'Because in coalesced hashing, the linked list is created inside the hash table, thus the searching must be carried out sequentially', 'In coalesced hashing, the linked list is created inside the hash table and a colliding key is put in the last available position of the table.', 'A'),
 ('Select the statement about recursive functions that is most correct.', 'Every recursive function must have exactly one base case.', 'Every recursive function must have at least one base case.', 'In recursive function the base cases may be absent.', 'In recursive function only the general (recursive) case must be appeared', 'B');
-
-
-USE quiz_db;
-SELECT * FROM UserResponses;
-
-TRUNCATE TABLE QuizQuestions;
-
-SELECT * FROM QuizQuestions;

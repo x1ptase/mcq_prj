@@ -1,56 +1,63 @@
 const express = require('express');
 const sql = require('mssql');
-const bodyParser = require('body-parser');
-const path = require('path');
-
 const app = express();
-const port = 3000;
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static('public'));
 
-// Cấu hình SQL Server (Thay pass và user nếu cần)
 const config = {
     user: 'sa',
     password: '12345',
-    server: 'localhost', 
+    server: 'localhost',
     database: 'quiz_db',
-    options: {
-        encrypt: true,
-        trustServerCertificate: true
-    }
+    options: { encrypt: true, trustServerCertificate: true }
 };
 
-// Route 1: Lấy danh sách toàn bộ câu hỏi
+// Route lấy câu hỏi
 app.get('/get-questions', async (req, res) => {
     try {
         let pool = await sql.connect(config);
-        // Sắp xếp theo ID để không bao giờ mất câu 1
         let result = await pool.request().query('SELECT * FROM QuizQuestions ORDER BY id ASC');
         res.json(result.recordset);
     } catch (err) {
-        console.error("Lỗi API lấy câu hỏi:", err);
-        res.status(500).send("Lỗi Server");
+        console.error("Lỗi GET:", err.message);
+        res.status(500).send(err.message);
     }
 });
 
-// Route 2: Lưu đáp án người dùng chọn
-app.post('/submit', async (req, res) => {
-    const { questionId, answer } = req.body;
+// Route nộp bài
+app.post('/submit-all', async (req, res) => {
     try {
+        const userAnswers = req.body;
+        console.log("Dữ liệu nhận được:", userAnswers);
+
         let pool = await sql.connect(config);
-        await pool.request()
-            .input('qId', sql.Int, questionId)
-            .input('ans', sql.Char(1), answer)
-            .query('INSERT INTO UserResponses (question_id, selected_option) VALUES (@qId, @ans)');
-        console.log(`Đã lưu câu ${questionId} - Đáp án: ${answer}`);
-        res.json({ success: true });
+        let dbData = await pool.request().query('SELECT id, correct_answer FROM QuizQuestions');
+        const dbAnswers = dbData.recordset;
+
+        let score = 0;
+        for (const uAns of userAnswers) {
+            const q = dbAnswers.find(item => item.id === uAns.qId);
+            
+            // So sánh chuẩn hóa (Xóa khoảng trắng, viết hoa)
+            const correctStr = q.correct_answer.trim().toUpperCase();
+            const userStr = uAns.answer.trim().toUpperCase();
+
+            if (q && userStr === correctStr) {
+                score++;
+            }
+
+            // Lưu lịch sử
+            await pool.request()
+                .input('qId', sql.Int, uAns.qId)
+                .input('ans', sql.VarChar, userStr)
+                .query('INSERT INTO UserResponses (question_id, selected_option) VALUES (@qId, @ans)');
+        }
+        res.json({ success: true, score, total: dbAnswers.length });
     } catch (err) {
-        res.status(500).json({ success: false });
+        console.error("Lỗi POST (Kiểm tra cột SQL!):", err.message);
+        res.status(500).json({ success: false, message: err.message });
     }
 });
 
-app.listen(port, () => {
-    console.log(`>>> Server đang chạy tại: http://localhost:${port}`);
-});
+app.listen(3000, () => console.log('>>> Server chạy tại http://localhost:3000'));
