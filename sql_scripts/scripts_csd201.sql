@@ -20,44 +20,24 @@ In a singly-linked list, there is no efficient way to insert a node before a giv
 
 ---ALGORITHM QUESTION---
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
-
-
-
----COMPLEXITY OF ALGORITHMS---
-INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
-('The complexity of heap sort is', 'O(nlog n)', 'O(log n)', 'O(n)', 'O(n^2)', 'A'),
-('Select the statement that is most correct.
-Basically, the complexity of inserting a node before a given node in a doubly linked lists is', 'O(1)', 'O(n)', 'O(log n)', 'O(n^2)', 'A'),
-('Select the statement that is most correct.
-Basically, the complexity of inserting new element before a given node in the middle of a singly linked lists is', 'O(n^2)', 'O(1)', 'O(log n)', 'O(n)', 'D'),
-(N'Given a search() method in a binary search tree:
-Node search(int x) {
-  Node p = root;
-  while(p != null && p.info != x)
-    if(x < p.info) p = p.left;
-    else p = p.right;
-  return(p);
-}
-The complexity of this algorithm is:', 
-'O(n^2)', 'O(n)', 'O(log n)', 'O(nlog n)', 'C'),
-('Select the most correct statement:',
-'In all cases the insertion sort is O(n^2).', 'The complexity of insertion sort is O(n^2), in the best case it is O(n)', 'The complexity of insertion sort is O(nlog n), in the best case it is O(n).', 'The complexity of insertion sort is O(n^2), in the best case it is O(nlog n).', 'B'),
-('Select the most correct statement:',
-'In all cases the selection sort is O(n^2).', 'In the worst case the selection sort is O(n^2), in the best case it is O(n).', 'In the worst case the selection sort is O(n^2), in the best case it is O(nlog n).', 'In the average case the selection sort is O(n^2), in the best case it is O(nlog n).', 'A'),
-('Select the most correct statement about the complexity of insertion sort',
-'Both best and worst cases are O(n^2)', 'The best case is O(n), and the worst case is O(nlogn)', 'The best case is O(nlogn), and the worst case is O(n^2)', 'The best case is O(n), and the worst case is O(n^2)', 'D'),
-('Select the most correct statement about the complexity of selection sort', 
-'Both best and worst cases are O(n^2)', 'The best case is O(n), and the worst case is O(n^2)', 'The best case is O(n), and the average case is O(nlog n)', 'The best case is O(n), and the average case is O(n^2)', 'A'),
-('Select the most correct statement about the complexity of heapsort',
-'The best case is O(n), and the worst case is O(n^2)', 'The best case is O(n), and the worst case is O(nlog n)', 'Best case is O(nlog n), the worst case is O(n^2)', 'Both best and worst cases are O(nlog n)', 'D'),
-('Select the correct statement.
-(full binary tree = proper binary tree = 2-tree)', 'Every complete binary tree is also a full binary tree.', 'Every binary tree is either complete or full.', 'Every full binary tree is also a complete binary tree.', 'No binary tree is both complete and full.', 'A'),
-(N'Which statements are true (select two):', 
-N'In a singly-linked list there is no efficient way to insert a node before a given node in the middle of the list (O(1)).', 
-N'In a singly-linked list we can insert a node after a given node with time complexity O(1)', 
-N'In a singly-linked list we can insert a node after a given node with time complexity O(n)', 
-N'In a singly-linked list we can insert a node before a given node in the middle of the list with time complexity O(1)', 
-'AB');
+('pic26.png', '2', '3', '4', '5', 'D'),
+('pic27.png', '1 3 5 7 9', '9 7 5 3', '9 7 5 3 1', '7 5 3 1', 'C'),
+('pic28.png', '3', '2', '4', '5', 'A'),
+('pic29.png', '18', '16', '17', '15', 'C'),
+('pic30.png', '2', '3', '9', '8', 'B');
+('pic31.png', '2', '3', '4', '5', 'D'),
+('pic32.png', '1 3 5 7 9', '9 7 5 3', '9 7 5 3 1', '7 5 3 1', 'C'),
+('pic33.png', '3', '2', '4', '5', 'A'),
+('pic34.png', '18', '16', '17', '15', 'C'),
+('pic35.png', '2', '3', '9', '8', 'B'),
+('pic36.png', '2', '3', '4', '5', 'D'),
+('pic37.png', '1 3 5 7 9', '9 7 5 3', '9 7 5 3 1', '7 5 3 1', 'C'),
+('pic38.png', '3', '2', '4', '5', 'A'),
+('pic39.png', '18', '16', '17', '15', 'C'),
+('pic40.png', '2', '3', '9', '8', 'B'),
+('pic41.png', '2', '3', '9', '8', 'B'),
+('pic42.png', '2', '3', '9', '8', 'B'),
+('pic43.png', '2', '3', '9', '8', 'B');
 
 ---ARRAY---
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES  
@@ -67,7 +47,7 @@ INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, cor
 ('pic137.png', '(3)', '(1)', '(2)', '(4)', 'B'),
 ('pic138.png', '(2)', '(1)', '(3)', '(4)', 'A'),
 ('pic139.png', '(3)', '(4)', '(1)', '(2)', 'D'),
-('pic140.png', '(3)', '(4)', '(2)', '(1)', 'D'),
+('pic140.png', '(3)', '(4)', '(2)', '(1)', 'A'),
 ('pic141.png', '(4)', '(3)', '(2)', '(1)', 'D'),
 ('pic142.png', '(3)', '(1)', '(4)', '(2)', 'B'),
 ('pic143.png', '(1)', '(2)', '(3)', '(4)', 'C'),
@@ -91,7 +71,131 @@ INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, cor
 ('pic158.png', '38', '24', '40', '18', 'A'),
 ('pic159.png', '43', '42', '44', '39', 'B'),
 ('pic160.png', '37', '42', '40', '43', 'B'),
-('pic161.png', '45', '40', '42', '39', 'D');
+('pic161.png', '45', '40', '42', '39', 'D'),
+('pic162.png', '40', '43', '42', '37', 'C'),
+('pic163.png', '1, 3, 4, 5, 7, 2, 8, 6', '1, 3, 4, 5, 7, 2, 6, 8', '4, 3, 7, 5, 1, 8, 6, 2', '1, 3, 4, 7, 5, 2, 6, 8', 'B'),
+('pic164.png', '1, 3, 4, 5, 7, 2, 6, 8', '4, 3, 7, 5, 1, 2, 8, 6', '4, 7, 5, 3, 8, 6, 2, 1', '1, 3, 4, 7, 5, 2, 6, 8', 'B'),
+('pic165.png', '1, 3, 6, 5, 7, 2, 4, 8', '1, 3, 6, 7, 5, 2, 4, 8', '6, 3, 7, 5, 1, 8, 4, 2', '1, 3, 6, 5, 7, 2, 8, 4', 'A'),
+('pic166.png', '1, 2, 6, 7, 5, 3, 8, 4', '6, 2, 7, 5, 1, 8, 4, 3', '1, 2, 6, 7, 5, 3, 4, 8', '1, 2, 6, 5, 7, 3, 4, 8', 'D'),
+('pic167.png', '6, 7, 5, 3, 8, 4, 2, 1', '6, 3, 7, 5, 1, 2, 8, 4', '1, 3, 6, 7, 5, 2, 4, 8', '1, 3, 6, 5, 7, 2, 8, 4', 'B'),
+('pic168.png', '7, 4, 3, 5, 1, 2, 8, 6', '1, 3, 4, 7, 5, 2, 8, 6', '7, 4, 5, 3, 8, 6, 2, 1', '1, 3, 4, 7, 5, 2, 6, 8', 'D'),
+('pic169.png', '1, 2, 4, 7, 5, 3, 6, 8', '7, 4, 5, 2, 8, 6, 3, 1', '1, 2, 4, 7, 5, 3, 8, 6', '7, 4, 2, 5, 1, 3, 8, 6', 'D'),
+('pic170.png', '1, 2, 6, 7, 5, 3, 8, 4', '1, 2, 6, 7, 5, 3, 8, 4', '7, 6, 2, 5, 1, 3, 8, 4', '7, 6, 5, 2, 8, 4, 3, 1', 'C'),
+('pic171.png', '1, 2, 6, 7, 5, 3, 8, 4', '7, 6, 5, 2, 8, 4, 3, 1', '7, 6, 2, 5, 1, 3, 8, 4', '1, 2, 6, 7, 5, 3, 4, 8', 'D'),
+('pic172.png', '2, 1, 4, 3, 7, 8, 6', '2, 1, 4, 3, 7, 6, 8', '2, 1, 4, 3, 6, 7, 8', '4, 2, 7, 1, 3, 6, 8', 'B'),
+('pic173.png', '2, 1, 4, 3, 7, 8, 9', '2, 1, 4, 3, 8, 7, 9', '4, 2, 8, 1, 3, 7, 9', '2, 1, 4, 3, 8, 9, 7', 'C'),
+('pic174.png', '4, 2, 7, 1, 3, 8, 9', '4, 2, 7, 1, 8, 3, 9', '2, 1, 4, 7, 8, 3, 9', '2, 1, 4, 3, 7, 8, 9', 'A'),
+('pic175.png', '2, 1, 4, 3, 7, 6, 8', '4, 2, 7, 1, 3, 6, 8', '2, 1, 4, 7, 3, 6, 8', '4, 2, 7, 1, 6, 8, 3', 'B'),
+('pic176.png', '2, 1, 4, 3, 6, 7, 8', '2, 1, 4, 3, 6, 8, 7', '4, 2, 6, 1, 3, 7, 8', '4, 2, 6, 1, 3, 8, 7', 'D'),
+('pic177.png', '2, 1, 4, 3, 6, 7, 8', '2, 1, 4, 3, 6, 8, 7', '4, 2, 6, 1, 3, 8, 7', '4, 2, 6, 1, 3, 7, 8', 'B'),
+('pic178.png', '5, 1, 7, 4, 6, 8, 3', '5, 1, 7, 4, 6, 3, 8', '5, 4, 7, 1, 3, 6, 8', '5, 1, 7, 4, 3, 6, 8', 'A'),
+('pic179.png', '5, 1, 7, 2, 6, 8, 4', '5, 2, 7, 1, 4, 6, 8', '5, 1, 7, 6, 8, 2, 4', '5, 2, 7, 1, 6, 8, 4', 'B'),
+('pic180.png', '6, 2, 7, 1, 4, 8, 5', '6, 2, 8, 1, 4, 7, 5', '6, 1, 8, 2, 7, 4, 5', '6, 1, 7, 2, 8, 5, 4', 'B'),
+('pic181.png', '6, 2, 7, 1, 5, 8, 3, 4', '6, 2, 7, 1, 3, 5, 8, 4', '6, 2, 7, 1, 3, 5, 8, 4', '6, 2, 7, 1, 4, 8, 3, 5', 'D'),
+('pic182.png', '6, 1, 7, 2, 8, 5, 4', '6, 2, 7, 1, 4, 5, 8', '6, 1, 7, 2, 8, 4, 5', '6, 2, 7, 1, 4, 8, 5', 'D'),
+('pic183.png', '6, 1, 8, 2, 7, 9, 4', '6, 1, 8, 2, 4, 7, 9', '6, 2, 1, 4, 8, 7, 9', '6, 2, 8, 1, 4, 7, 9', 'A'),
+('pic184.png', '15, 5, 25, 10, 20, 40, 35', '15, 5, 40, 10, 35, 25, 20', '25, 15, 40, 5, 35, 10, 20', '25, 15, 40, 5, 20, 35, 10', 'A'),
+('pic185.png', '15, 5, 25, 10, 20, 40, 35', '25, 15, 40, 5, 20, 35, 10', '15, 5, 40, 10, 35, 25, 20', '15, 5, 25, 20, 10, 40, 35', 'B'),
+('pic186.png', '25, 15, 50, 35, 30, 45', '35, 25, 50, 15, 30, 45', '25, 15, 35, 50, 30, 45', '35, 15, 25, 30, 45, 50', 'B'),
+('pic187.png', '30, 5, 40, 25, 35, 10, 20', '30, 25, 40, 5, 20, 10, 35', '30, 5, 40, 10, 35, 25, 20', '30, 5, 40, 10, 25, 35, 20', 'C'),
+('pic188.png', '35, 20, 45, 10, 25, 40, 30, 22', '35, 20, 45, 10, 25, 40, 22, 30', '35, 20, 45, 10, 40, 25, 22, 30', '35, 20, 45, 10, 30, 40, 25, 22', 'B'),
+('pic189.png', '35, 22, 45, 12, 32, 40, 27, 24', '35, 22, 45, 12, 27, 40, 24, 32', '35, 22, 45, 12, 32, 40, 24, 27', '35, 22, 45, 12, 40, 27, 24, 32', 'B'),
+('pic190.png', '40, 25, 50, 15, 30, 45, 27, 35', '40, 25, 50, 15, 35, 45, 27, 30', '40, 25, 50, 15, 30, 45, 35, 27', '40, 25, 50, 15, 35, 45, 30, 27', 'A'),
+('pic192.png', '{b, d}', '{b, c}', '{c, e}', '{f, g}', 'C'),
+('pic193.png', 'c, e, a', 'b, c, d', 'b, c, e', 'e, d, a', 'C'),
+('pic194.png', 'A, B, C', 'A, B, D, C', 'A, B, D, E, C', 'A, B, E, C', 'C'),
+('pic195.png', 'H, A, B, D, T', 'H, B, D, T', 'H, C, T', 'H, A, B, C, T', 'D'),
+('pic196.png', 'A, D, F', 'A, B, C, D, F', 'A, B, D, C, F', 'A, B, C, D, E, F', 'B'),
+('pic197.png', 'A, C, D, B', 'A, C, E, B', 'A, C, B', 'A, C, D, E, B', 'D'),
+('pic198.png', 'A, E, F', 'A, B, C, E, F', 'A, C, E, F', 'A, B, D, F', 'B'),
+('pic199.png', 'A, C, E, F', 'A, C, D, F', 'A, B, C, E, D, F', 'A, B, C, E, F', 'C'),
+('pic200.png', 'AABBABAB', 'BABABBBA', 'AABBBBAB', 'CAABBBBA', 'C'),
+('pic201.png', 'AABBABCB', 'AABBBBCBC', 'AABBBBCAB', 'CAABBBAC', 'A'),
+('pic202.png', 'CAABBBAC', 'BABABCBC', 'CAABBCAB', 'CAABABAB', 'A'),
+('pic203.png', 'BABABBBA', 'BABABCBC', 'AABBABAB', 'BABABCAB', 'B'),
+('pic204.png', 'B, A, E, G, F, D, C, H', 'B, A, C, E, G, D, F, H', 'B, A, C, E, G, F, D, H', 'B, A, C, E, G, D, F', 'B'),
+('pic205.png', 'C, B, D, A, E, F, G, H', 'C, B, D, A, E, F, G', 'C, B, D, A, E, G, F, H', 'C, B, D, A, G, E, F, H', 'A'),
+('pic206.png', 'A, B, E, G, C, F, D, H', 'A, B, E, G, C, F, D', 'A, B, C, E, G, F, D, H', 'A, B, E, G, F, D, C, H', 'A'),
+('pic207.png', 'C, B, D, A, E, F, H, G', 'C, B, D, F, A, E, G, H', 'C, B, D, A, E, F, G, H', 'C, B, D, F, A, E, G', 'B'),
+('pic208.png', 'C, B, D, A, E, F, G, G', 'C, B, D, F, A, E, G, H', 'C, B, D, A, E, F, G, H', 'C, B, D, F, A, E, G', 'B'),
+('pic209.png', 'D, C, F, B, E, A, G, H', 'D, C, B, F, A, G, E, H', 'D, B, C, F, A, E, G', 'D, B, C, F, A, E, G, H', 'D'),
+('pic210.png', 'D, C, F, B, G, A, E', 'D, C, B, A, E, G, F, H', 'D, C, F, B, G, A, E, H', 'D, C, F, B, E, G, A, H', 'C');
+
+---COMPLEXITY OF ALGORITHMS---
+INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
+('The complexity of heap sort is', 'O(nlog n)', 'O(log n)', 'O(n)', 'O(n^2)', 'A'),
+('Select the statement that is most correct.
+Basically, the complexity of inserting a node before a given node in a doubly linked lists is', 'O(1)', 'O(n)', 'O(log n)', 'O(n^2)', 'A'),
+('Select the statement that is most correct.
+Basically, the complexity of inserting new element before a given node in the middle of a singly linked lists is', 'O(n^2)', 'O(1)', 'O(log n)', 'O(n)', 'D'),
+(N'Given a search() method in a binary search tree:
+Node search(int x) {
+  Node p = root;
+  while(p != null && p.info != x)
+    if(x < p.info) p = p.left;
+    else p = p.right;
+  return(p);
+}
+The complexity of this algorithm is:', 
+'O(n^2)', 'O(n)', 'O(log n)', 'O(nlog n)', 'C'),
+('Select the most correct statement:',
+'In all cases the insertion sort is O(n^2).', 'The complexity of insertion sort is O(n^2), in the best case it is O(n)', 'The complexity of insertion sort is O(nlog n), in the best case it is O(n).', 'The complexity of insertion sort is O(n^2), in the best case it is O(nlog n).', 'B'),
+('Select the most correct statement:',
+'In all cases the selection sort is O(n^2).', 
+'In the worst case the selection sort is O(n^2), in the best case it is O(n).', 
+'In the worst case the selection sort is O(n^2), in the best case it is O(nlog n).', 'In the average case the selection sort is O(n^2), in the best case it is O(nlog n).', 'A'),
+('Select the most correct statement about the complexity of insertion sort',
+'Both best and worst cases are O(n^2)', 'The best case is O(n), and the worst case is O(nlogn)', 'The best case is O(nlogn), and the worst case is O(n^2)', 'The best case is O(n), and the worst case is O(n^2)', 'D'),
+('Select the most correct statement about the complexity of selection sort', 
+'Both best and worst cases are O(n^2)', 'The best case is O(n), and the worst case is O(n^2)', 'The best case is O(n), and the average case is O(nlog n)', 'The best case is O(n), and the average case is O(n^2)', 'A'),
+('Select the most correct statement about the complexity of heapsort',
+'The best case is O(n), and the worst case is O(n^2)', 'The best case is O(n), and the worst case is O(nlog n)', 'Best case is O(nlog n), the worst case is O(n^2)', 'Both best and worst cases are O(nlog n)', 'D'),
+('Select the correct statement.
+(full binary tree = proper binary tree = 2-tree)', 
+'Every complete binary tree is also a full binary tree.', 'Every binary tree is either complete or full.', 'Every full binary tree is also a complete binary tree.', 'No binary tree is both complete and full.', 'A'),
+('Slect the most correct statements:', 
+'In a linked list, the tail node is introduced for performance purpose only', 
+'In a linked list, there must be the tail node', 'The tail node is necessary for inserting a node after the last node', 'The tail node is necessary for inserting a node before the last node', 'A'),
+(N'Which statements are true (select two):', 
+N'In a singly-linked list there is no efficient way to insert a node before a given node in the middle of the list (O(1)).', 
+N'In a singly-linked list we can insert a node after a given node with time complexity O(1)', 
+N'In a singly-linked list we can insert a node after a given node with time complexity O(n)', 
+N'In a singly-linked list we can insert a node before a given node in the middle of the list with time complexity O(1)', 
+'AB'),
+('You are given a singly linked list with at least 3 elements and p is a reference to a middle node (p is not the head nor the tail node). Select the statement about deleting the node p from the list that is most correct.',
+'Deleting the node p always takes O(n) time', 'Deleting the node p always takes O(1) time', 
+'We can delete the node p by moving the data from the next node into the p node and then deleting the next node by statement p.next = p.next.next; This solution has O(1) runtime',
+'We can find the node f before the node p and then deleting the node p by statement f.next = p.next; This solution has O(1) runtime.', 'C'),
+('What is the correct definition of a hash function? (Select the best answer)',
+'Hash function h(x) is a function which transforms a particular key x, be it a string, number, record, or the like, into non-negative integer.',
+'Hash function h(x) is a function which transforms a particular key x, be it a string, number, record, or the like, into an index i = h(x) in the table T, where T[i] is used for storing an item having key x or its address.',
+'Hash function h(x) is a function which transforms a particular key x (string, or number) into an index i = h(x) in the table T, where T[i] is used for storing an item having key x or its address.',
+'Hash function h(x) is a function which transforms a particular key x, be it a string, number, record, or the like, into a positive integer.', 'B'),
+('What is the correct definition of a hash table? (Select the best answer)',
+'Hash Table T is an array in memory used for storing items. Hash table T is used with a hash function h(x), which transforms a particular key x (a string, number, record, or the like), into an index i = h(x) in the table',
+'Hash Table T is an array in memory used for storing items or their addresses. Hash table T is used with a hash function h(x), which transforms a particular key x (a string, number, record, or the like), into a non-negative integer.',
+'Hash Table T is an array in memory used for storing items or their addresses. Hash table T is used with a hash function h(x), which transforms a particular key x (a string, number, record, or the like), into an index i = h(x) in the table',
+'Hash Table T is an array in memory used for storing items. Hash table T is used with a hash function h(x), which transforms a particular key x (string or number), into an index i = h(x) in the table.', 'C');
+
+
+---SHORT QUESTION---
+INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES
+('_________ is a connected graph without any simple circuit', 'Kn', 'Tree', 'Simple graph', 'Pseudo graph', 'B'),
+('Which of the following can be used to represent graphs (select 3)', 'Adjacency matrix', 'Adjacency list', 'Incident matrix', 'Adequate matrix', 'ABC'),
+('What data structure is used for breadth first traversal of a graph', 'queue', 'stack', 'list', 'none of the above', 'A'),
+('Which of the following stack operations could result in stack underflow', 'isEmpty',  'pop', 'push', 'None of these', 'B'),
+('A graph that has neither self-loop nor parallel edges are called __________.', 'simple graph', 'multigraph', 'pseudograph', 'connected graph', 'A'),
+('An algorithm that calls itself directly or indirectly is known as', 'Polish notation', 'Sub algorithm', 'Recursion', 'Traversal algorithm', 'C'),
+('Fill in the blank of the statement to form the most correct one:
+In a ________ every element contains some data and a link to the next element, which allows to keep the structure.', 'binary search tree', 'doubly linked list', 'singly linked list', 'skip list', 'C'),
+('If every node u in G í adjacent to every other node v in G, a graph í said to be', 'isolated', 'complete', 'finite', 'strongly connected', 'B'),
+('The operation of visiting each element in the list exactly once is known as', 'Inserting', 'Merging', 'Traverse', 'Sorting', 'C'),
+('The term "push" and "pop" is related to the', 'lists', 'stacks', 'array', 'queues', 'B'),
+('The operation for removing and returning the front element of the queue is traditionally called:', 'delete', 'peek', 'dequeue', 'remove', 'C'),
+('The operation for removing the top element of the stack is traditionally called:', 'delete', 'peek', 'pop', 'remove', 'C'),
+('The operation for adding an entry to a stack is traditionally called:', 'push', 'append', 'insert', 'add', 'A'),
+('The operation for adding an entry to a queue is traditionally called:', 'enqueue', 'append', 'insert', 'add', 'A'),
+('The in-order traverse of tree will yield a sorted listing of elements of tree in', 'Binary trees', 'Binary search trees', 'Heaps', 'None of others', 'B');
 
 --LINH TINH---
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES 
