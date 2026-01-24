@@ -24,7 +24,7 @@ INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, cor
 ('pic27.png', '1 3 5 7 9', '9 7 5 3', '9 7 5 3 1', '7 5 3 1', 'C'),
 ('pic28.png', '3', '2', '4', '5', 'A'),
 ('pic29.png', '18', '16', '17', '15', 'C'),
-('pic30.png', '2', '3', '9', '8', 'B');
+('pic30.png', '2', '3', '9', '8', 'B'),
 ('pic31.png', '2', '3', '4', '5', 'D'),
 ('pic32.png', '1 3 5 7 9', '9 7 5 3', '9 7 5 3 1', '7 5 3 1', 'C'),
 ('pic33.png', '3', '2', '4', '5', 'A'),
