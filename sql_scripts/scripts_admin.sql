@@ -29,3 +29,4 @@ TRUNCATE TABLE QuizQuestions;
 GO
 
 SELECT * FROM QuizQuestions;
+
