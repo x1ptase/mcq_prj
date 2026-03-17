@@ -1,111 +1,137 @@
-﻿--PHẦN A – TỪ VỰNG CƠ BẢN (1–10)
+﻿USE quiz_db;
+GO
+--BÀI 9: TỪ VỰNG PHẦN 1
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES
-(N'Chọn nghĩa tiếng Việt đúng
-お菓子', N'Món ăn', N'Bánh kẹo', N'Trái cây', N'Đồ uống', 'B'),
-(N'Chọn nghĩa tiếng Việt đúng
-切手', N'Vé', N'Tem', N'Thư', N'Bưu điện', 'B'),
-(N'Chọn nghĩa tiếng Việt đúng
-漫画', N'Phim', N'Tiểu thuyết', N'Truyện tranh', N'Báo', 'C'),
-(N'Chọn nghĩa tiếng Việt đúng
-ドラマ', N'Hoạt hình', N'Phim điện ảnh', N'Phim truyền hình', N'Kịch sân khấu', 'C'),
-(N'Chọn nghĩa tiếng Việt đúng
-最近', N'Lúc nào cũng', N'Hôm qua', N'Gần đây', N'Tương lai', 'C'),
-(N'Chọn nghĩa tiếng Việt đúng
-クラシック', N'Nhạc pop', N'Nhạc cổ điển', N'Nhạc trẻ', N'Nhạc rock', 'B'),
-(N'Chọn nghĩa tiếng Việt đúng
-小説', N'Truyện tranh', N'Thơ', N'Tiểu thuyết', N'Tạp chí', 'C'),
-(N'Chọn nghĩa tiếng Việt đúng
-釣り', N'Leo núi', N'Bơi', N'Câu cá', N'Chạy bộ', 'C'),
-(N'Chọn nghĩa tiếng Việt đúng
-プール', N'Biển', N'Sông', N'Bể bơi', N'Hồ', 'C'),
-(N'Chọn nghĩa tiếng Việt đúng
-特に', N'Không bao giờ', N'Đặc biệt', N'Thỉnh thoảng', N'Thường xuyên', 'B');
+(N'Nghĩa của 「アクション」 là gì?', N'Nhạc Pop', N'Hành động', N'Truyện tranh', N'Bánh kẹo', 'B'),
+(N'Nghĩa của 「おかし」 là gì?', N'Bể bơi', N'Tem', N'Bánh kẹo', N'Phim truyền hình', 'C'),
+(N'Nghĩa của 「きって」 là gì?', N'Nhạc cổ điển', N'Tem', N'Câu cá', N'Tiểu thuyết', 'B'),
+(N'Nghĩa của 「クラシック」 là gì?', N'Nhạc cổ điển', N'Bể bơi', N'Bánh kẹo', N'Truyện tranh', 'A'),
+(N'Nghĩa của 「ポップス」 là gì?', N'Nhạc cổ điển', N'Phim truyền hình', N'Nhạc Pop', N'Câu cá', 'C'),
+(N'Nghĩa của 「しょうせつ」 là gì?', N'Truyện tranh', N'Bơi', N'Tiểu thuyết', N'Tem', 'C'),
+(N'Nghĩa của 「まんが」 là gì?', N'Tiểu thuyết', N'Truyện tranh', N'Nhạc Pop', N'Bể bơi', 'B'),
+(N'Nghĩa của 「つり」 là gì?', N'Bơi', N'Câu cá', N'Bánh kẹo', N'Phim truyền hình', 'B'),
+(N'Nghĩa của 「ドラマ」 là gì?', N'Câu cá', N'Phim truyền hình', N'Nhạc cổ điển', N'Tem', 'B'),
+(N'Nghĩa của 「プール」 là gì?', N'Bể bơi', N'Truyện tranh', N'Nhạc Pop', N'Bơi', 'A'),
+(N'Nghĩa của 「さいきん」 là gì?', N'Thường', N'Luôn luôn', N'Gần đây', N'Đặc biệt', 'C'),
+(N'Nghĩa của 「～にち」 là gì?', N'~ ngày', N'~ tuần', N'~ tháng', N'~ năm', 'A'),
+(N'Nghĩa của 「～しゅうかん」 là gì?', N'~ tháng', N'~ tuần', N'~ ngày', N'~ năm', 'B'),
+(N'Nghĩa của 「～かげつ」 là gì?', N'~ tuần', N'~ tháng', N'~ năm', N'~ lần', 'B'),
+(N'Nghĩa của 「～ねん」 là gì?', N'~ năm', N'~ tháng', N'~ lần', N'~ ngày', 'A'),
+(N'Nghĩa của 「～かい」 là gì?', N'~ quyển', N'~ lần', N'~ ly', N'~ cái dài', 'B'),
+(N'Nghĩa của 「～さつ」 là gì?', N'~ quyển', N'~ ly', N'~ lần', N'~ năm', 'A'),
+(N'Nghĩa của 「～はい」 là gì?', N'~ ly, cốc', N'~ quyển', N'~ lần', N'~ năm', 'A'),
+(N'Nghĩa của 「～ほん」 là gì?', N'~ cái, chiếc, cây (vật dài)', N'~ ly', N'~ quyển', N'~ lần', 'A'),
+(N'Nghĩa của 「りょうり」 là gì?', N'Bơi', N'Bánh kẹo', N'Món ăn', N'Nhạc Pop', 'C'),
+(N'Nghĩa của 「およぎます」 là gì?', N'Lái xe', N'Bơi', N'Vẽ', N'Thu thập', 'B'),
+(N'Nghĩa của 「かきます」 là gì?', N'Vẽ, tả', N'Bơi', N'Lái xe', N'Thu thập', 'A'),
+(N'Nghĩa của 「あつめます」 là gì?', N'Bơi', N'Thu thập, tập hợp', N'Lái xe', N'Vẽ', 'B'),
+(N'Nghĩa của 「うんてんします」 là gì?', N'Lái xe', N'Bơi', N'Thu thập', N'Vẽ', 'A'),
+(N'Nghĩa của 「とくに」 là gì?', N'Đặc biệt', N'Thỉnh thoảng', N'Thường', N'Luôn luôn', 'A'),
+(N'Nghĩa của 「いつも」 là gì?', N'Thường', N'Luôn luôn', N'Thỉnh thoảng', N'Không lắm', 'B'),
+(N'Nghĩa của 「よく」 là gì?', N'Thường', N'Thỉnh thoảng', N'Luôn luôn', N'Không lắm', 'A'),
+(N'Nghĩa của 「ときどき」 là gì?', N'Thỉnh thoảng', N'Thường', N'Luôn luôn', N'Không lắm', 'A'),
+(N'Nghĩa của 「あまり」 là gì?', N'Không ~ lắm', N'Hoàn toàn không', N'Luôn luôn', N'Thường', 'A'),
+(N'Nghĩa của 「ぜんぜん」 là gì?', N'Hoàn toàn không', N'Không lắm', N'Thỉnh thoảng', N'Luôn luôn', 'A'),
+(N'Nghĩa của 「でも」 là gì?', N'Và', N'Nhưng, tuy nhiên', N'Hoặc', N'Bởi vì', 'B'),
+(N'Nghĩa của 「だけ」 là gì?', N'Chỉ', N'Nhiều', N'Thường', N'Đặc biệt', 'A');
 
---PHẦN B – CHỌN TỪ TIẾNG NHẬT ĐÚNG (11–20)
+--BÀI 9: TỪ VỰNG PHẦN 2
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES
-(N'Nhạc Pop', N'クラシック', N'ドラマ', N'ポップス', N'小説', 'C'),
-(N'Bơi', N'描きます', N'集めます', N'泳ぎます', N'運転します', 'C'),
-(N'Vẽ', N'泳ぎます', N'描きます', N'集めます', N'釣り', 'B'),
-(N'Lái xe', N'運転します', N'集めます', N'描きます', N'泳ぎます', 'A'),
-(N'Thu thập', N'運転します', N'描きます', N'集めます', N'釣り', 'C'),
-(N'Thường / hay', N'ぜんぜん', N'ときどき', N'よく', N'あまり', 'C'),
-(N'Luôn luôn', N'いつも', N'よく', N'ときどき', N'ぜんぜん', 'A'),
-(N'Thỉnh thoảng', N'よく', N'いつも', N'ときどき', N'あまり', 'C'),
-(N'Hoàn toàn không', N'あまり', N'ぜんぜん', N'よく', N'いつも', 'B'),
-(N'Không … lắm', N'ぜんぜん', N'よく', N'あまり', N'いつも', 'C');
+(N'Nghĩa của 「イベント」 là gì?', N'Khiêu vũ', N'Sự kiện', N'Câu lạc bộ', N'Cuộc thi', 'B'),
+(N'Nghĩa của 「コンテスト」 là gì?', N'Sự kiện', N'Lớp học', N'Cuộc thi', N'Thư pháp', 'C'),
+(N'Nghĩa của 「書道（しょどう）」 là gì?', N'Câu lạc bộ', N'Sự lặn xuống', N'Thư pháp', N'Khiêu vũ', 'C'),
+(N'Nghĩa của 「ダイビング」 là gì?', N'Học', N'Khiêu vũ', N'Sự kiện', N'Sự lặn xuống, lao xuống', 'D'),
+(N'Nghĩa của 「ダンス」 là gì?', N'Lớp học', N'Khiêu vũ', N'Thư pháp', N'Cuộc thi', 'B'),
+(N'Nghĩa của 「～クラブ」 là gì?', N'Lớp học ~', N'Câu lạc bộ ~', N'Sự kiện', N'Học', 'B'),
+(N'Nghĩa của 「きょうしつ」 là gì?', N'Sự kiện', N'Cuộc thi', N'Lớp học ~', N'Câu lạc bộ', 'C'),
+(N'Nghĩa của 「ならいます」 là gì?', N'Tham gia', N'Học', N'Đăng ký', N'Lên', 'B'),
+(N'Nghĩa của 「のります」 là gì?', N'Tham gia', N'Gia nhập', N'Lên', N'Đăng ký', 'C'),
+(N'Nghĩa của 「はいります」 là gì?', N'Đăng ký', N'Có thể', N'Vào, gia nhập, tham gia', N'Học', 'C'),
+(N'Nghĩa của 「もうしこみます」 là gì?', N'Học', N'Tham gia', N'Lên', N'Đăng ký', 'D'),
+(N'Nghĩa của 「できます」 là gì?', N'Học', N'Có thể', N'Tham gia', N'Đăng ký', 'B'),
+(N'Nghĩa của 「さんかします」 là gì?', N'Học', N'Tham gia', N'Gia nhập', N'Có thể', 'B'),
+(N'Nghĩa của 「すごい」 là gì?', N'Giỏi', N'Nhiều', N'Tuyệt vời', N'Tham gia', 'C'),
+(N'Nghĩa của 「いるいる（な）」 là gì?', N'Lớp học', N'Nhiều, đa dạng', N'Giỏi', N'Tuyệt vời', 'B'),
+(N'Nghĩa của 「じょうずに」 là gì?', N'Đăng ký', N'Thành thạo, giỏi', N'Nhiều', N'Sự kiện', 'B');
 
---PHẦN C – LƯỢNG TỪ & THỜI GIAN (21–30)
+--BÀI 9: TỪ VỰNG PHẦN 3
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES
-(N'～回 dùng để đếm:', N'Năm', N'Lần', N'Tháng', N'Quyển', 'B'),
-(N'～冊 dùng để đếm:', N'Ly', N'Vật dài', N'Quyển sách', N'Lần', 'C'),
-(N'～杯 dùng để đếm:', N'Cây', N'Ly / bát', N'Quyển', N'Năm', 'B'),
-(N'～本 dùng để đếm:', N'Sách', N'Ly', N'Vật dài', N'Lần', 'C'),
-(N'～週間 nghĩa là:', N'Tháng', N'Tuần', N'Ngày', N'Năm', 'B'),
-(N'～か月 là:', N'Tuần', N'Tháng', N'Ngày', N'Năm', 'B'),
-(N'～年 là:', N'Năm', N'Tháng', N'Tuần', N'Ngày', 'A'),
-(N'１週間に２回', N'1 tuần 2 ngày', N'2 tuần 1 lần', N'2 lần mỗi tuần', N'1 lần mỗi tuần', 'C'),
-(N'３か月', N'3 tuần', N'3 năm', N'3 tháng', N'3 ngày', 'C'),
-(N'５杯', N'5 quyển', N'5 lần', N'5 ly', N'5 năm', 'C');
+(N'Nghĩa của 「うけつけ」 là gì?', N'Số điện thoại', N'Quầy lễ tân, thường trực', N'Thẻ', N'Địa chỉ', 'B'),
+(N'Nghĩa của 「カード」 là gì?', N'Bài tập về nhà', N'Địa chỉ', N'Thẻ', N'Số ~', 'C'),
+(N'Nghĩa của 「外国人登録証」 là gì?', N'Số điện thoại', N'Chứng nhận đăng ký người nước ngoài', N'Quầy lễ tân', N'Thẻ', 'B'),
+(N'Nghĩa của 「じゅうしょ」 là gì?', N'Số điện thoại', N'Địa chỉ', N'Bài tập về nhà', N'Thẻ', 'B'),
+(N'Nghĩa của 「しゅくだい」 là gì?', N'Địa chỉ', N'Bài tập về nhà', N'Số ~', N'Thẻ', 'B'),
+(N'Nghĩa của 「でんわばんごう」 là gì?', N'Bài tập', N'Số điện thoại', N'Quầy lễ tân', N'Thẻ', 'B'),
+(N'Nghĩa của 「～ばん」 là gì?', N'Địa chỉ', N'Số điện thoại', N'Số ~', N'Thẻ', 'C'),
+(N'Nghĩa của 「いいます」 là gì?', N'Trả tiền', N'Nói', N'Xuống (xe)', N'Cho xem', 'B'),
+(N'Nghĩa của 「はらいます」 là gì?', N'Cho xem', N'Trả, chi trả', N'Xuống (tàu, xe)', N'Đặt trước', 'B'),
+(N'Nghĩa của 「おります」 là gì?', N'Xuống (tàu, xe)', N'Nói', N'Cho xem', N'Trả tiền', 'A'),
+(N'Nghĩa của 「みせます」 là gì?', N'Nói', N'Cho xem', N'Xuống xe', N'Đặt trước', 'B'),
+(N'Nghĩa của 「よやくします」 là gì?', N'Trả tiền', N'Nói', N'Đặt trước', N'Số điện thoại', 'C'),
+(N'Nghĩa của 「どうやって」 là gì?', N'Khi nào', N'Làm thế nào', N'Ở đâu', N'Tại sao', 'B');
 
---PHẦN D – NGỮ CẢNH & NGỮ PHÁP (31–40)
+--BÀI 9: KANJI
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES
-(N'私は＿＿＿映画を見ます。', N'あまり', N'ぜんぜん', N'よく', N'見ません', 'C'),
-(N'私はあまりテレビを＿＿＿。', N'見ます', N'見ません', N'見たいです', N'見ました', 'B'),
-(N'昨日、プールで＿＿＿。', N'泳ぎます', N'泳ぎました', N'泳ぎません', N'泳ぎたい', 'B'),
-(N'私は切手を＿＿＿います。', N'集め', N'集めて', N'集めます', N'集めました', 'B'),
-(N'小説を３＿＿＿読みました。', N'回', N'杯', N'冊', N'本', 'C'),
-(N'コーヒーを２＿＿＿飲みました。', N'本', N'杯', N'冊', N'回', 'B'),
-(N'私は＿＿＿テレビを見ません。', N'よく', N'ときどき', N'ぜんぜん', N'いつも', 'C'),
-(N'正しい文はどれですか。', N'あまり映画を見ます', N'ぜんぜん漫画を読みません', N'よくテレビを見ません', N'いつも本を読みません', 'B'),
-(N'私は特に音楽が好きです。', N'Tôi không thích nhạc', N'Tôi chỉ thích nhạc pop', 
-N'Tôi đặc biệt thích âm nhạc', N'Tôi thỉnh thoảng nghe nhạc', 'C'),
-(N'私は２週間に１回釣りをします。', N'Tôi câu cá mỗi tuần', N'Tôi câu cá 2 lần 1 tuần', 
-N'Tôi câu cá 1 lần trong 2 tuần', N'Tôi câu cá 2 tuần', 'C');
+(N'Nghĩa của 「好き（すき）」 là gì?', N'Vui vẻ', N'Thích', N'Âm thanh', N'Bài hát', 'B'),
+(N'Nghĩa của 「大好き（だいすき）」 là gì?', N'Du lịch', N'Rất thích', N'Xe hơi', N'Âm nhạc', 'B'),
+(N'Nghĩa của 「大好物（だいこうぶつ）」 là gì?', N'Bài hát', N'Món yêu thích', N'Nước biển', N'Ngoại ngữ', 'B'),
+(N'Nghĩa của 「歌（うた）」 là gì?', N'Âm thanh', N'Xe hơi', N'Bài hát', N'Vui vẻ', 'C'),
+(N'Nghĩa của 「歌う（うたう）」 là gì?', N'Hát', N'Kế hoạch', N'Du lịch', N'Âm nhạc', 'A'),
+(N'Nghĩa của 「国歌（こっか）」 là gì?', N'Phim', N'Âm nhạc', N'Quốc ca', N'Bài hát', 'C'),
+(N'Nghĩa của 「短歌（たんか）」 là gì?', N'Âm thanh', N'Quốc ca', N'Thơ ngắn', N'Phim', 'C'),
+(N'Nghĩa của 「音（おと）」 là gì?', N'Xe hơi', N'Âm thanh', N'Kế hoạch', N'Bài hát', 'B'),
+(N'Nghĩa của 「音読み（おんよみ）」 là gì?', N'Âm nhạc', N'Âm On', N'Bài hát', N'Du lịch', 'B'),
+(N'Nghĩa của 「楽しい（たのしい）」 là gì?', N'Bài hát', N'Biển', N'Vui vẻ', N'Âm thanh', 'C'),
+(N'Nghĩa của 「音楽（おんがく）」 là gì?', N'Âm nhạc', N'Du lịch', N'Xe hơi', N'Bài hát', 'A'),
+(N'Nghĩa của 「車（くるま）」 là gì?', N'Biển', N'Phim', N'Xe hơi', N'Âm thanh', 'C'),
+(N'Nghĩa của 「映画（えいが）」 là gì?', N'Bài hát', N'Phim', N'Âm nhạc', N'Du lịch', 'B'),
+(N'Nghĩa của 「計画（けいかく）」 là gì?', N'Du lịch', N'Xe hơi', N'Kế hoạch, dự án', N'Bài hát', 'C'),
+(N'Nghĩa của 「旅（たび）」 là gì?', N'Chuyến đi, du lịch', N'Biển', N'Âm thanh', N'Bài hát', 'A'),
+(N'Nghĩa của 「旅行（りょこう）」 là gì?', N'Âm nhạc', N'Du lịch', N'Xe hơi', N'Bài hát', 'B'),
+(N'Nghĩa của 「海（うみ）」 là gì?', N'Âm thanh', N'Biển', N'Nước biển', N'Bài hát', 'B'),
+(N'Nghĩa của 「海水（かいすい）」 là gì?', N'Biển', N'Xe hơi', N'Nước biển', N'Âm nhạc', 'C'),
+(N'Nghĩa của 「外国（がいこく）」 là gì?', N'Ngoại ngữ', N'Nước ngoài', N'Người nước ngoài', N'Biển', 'B'),
+(N'Nghĩa của 「外国語（がいこくご）」 là gì?', N'Nước ngoài', N'Ngoại ngữ', N'Xe hơi', N'Người nước ngoài', 'B'),
+(N'Nghĩa của 「外国人（がいこくじん）」 là gì?', N'Ngoại ngữ', N'Nước ngoài', N'Bài hát', N'Người nước ngoài', 'D'),
+(N'Nghĩa của 「海外（かいがい）」 là gì?', N'Hải ngoại, nước ngoài', N'Âm nhạc', N'Du lịch', N'Biển', 'A'),
+(N'Nghĩa của 「社外（しゃがい）」 là gì?', N'Ngoại ngữ', N'Ngoài công ty', N'Biển', N'Nước ngoài', 'B'),
+(N'Nghĩa của 「外（そと）」 trong 「家の外」 là gì?', N'Bên trong', N'Du lịch', N'Bên ngoài', N'Biển', 'C');
 
--- KANJI - 1 
+--BÀI 9: NGỮ PHÁP
 INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES
-(N'Từ 「好き」 có cách đọc là gì?', N'すき', N'きす', N'すく', N'さき', 'A'),
-(N'Từ 「歌う」 có nghĩa là gì?', N'Nghe', N'Nói', N'Hát', N'Đọc', 'C'),
-(N'Cách đọc của từ 「車」 là gì?', N'くるま', N'でんしゃ', N'じてんしゃ', N'ばしゃ', 'A'),
-(N'Từ 「楽しい」 nghĩa là gì?', N'Buồn', N'Vui vẻ', N'Khó', N'Nguy hiểm', 'B'),
-(N'Kanji của từ 「うみ」 (biển) là gì?', N'海', N'池', N'湖', N'川', 'A'),
-(N'Từ 「音」 đọc là gì?', N'おと', N'ね', N'おん', N'Cả A và C đều đúng', 'D'),
-(N'Nghĩa của từ 「外国」 là gì?', N'Trong nước', N'Nước ngoài', N'Thành phố', N'Công ty', 'B'),
-(N'Từ 「旅」 đọc là gì?', N'たび', N'りょ', N'みち', N'やま', 'A'),
-(N'Từ 「映画」 nghĩa là gì?', N'Sách', N'Phim', N'Nhạc', N'Họa báo', 'B'),
-(N'Cách đọc của 「計画」 là gì?', N'けいかく', N'けいか', N'はかる', N'かくけい', 'A');
-
--- KANJI - 2
-INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES
-(N'Cách đọc đúng của 「音楽」 là gì?', N'おとがく', N'おんらく', N'おんがく', N'おとらく', 'C'),
-(N'「大好物」 nghĩa là gì?', N'Người yêu', N'Món ăn yêu thích', N'Đồ vật lớn', N'Sở thích lớn', 'B'),
-(N'Từ nào có nghĩa là "Quốc ca"?', N'国歌', N'歌手', N'歌詞', N'歌道', 'A'),
-(N'「旅行」 có nghĩa là gì?', N'Đi làm', N'Đi học', N'Du lịch', N'Đi dạo', 'C'),
-(N'「海水」 là nước gì?', N'Nước ngọt', N'Nước sôi', N'Nước biển', N'Nước mưa', 'C'),
-(N'Từ 「外国人」 chỉ ai?', N'Người bản địa', N'Người nước ngoài', N'Người đi du lịch', N'Người cùng công ty', 'B'),
-(N'Cách đọc của 「音読み」 là gì?', N'おんよみ', N'おとよみ', N'おんよめ', N'おとよめ', 'A'),
-(N'Chữ 「画」 trong 「計画」 có âm Hán Việt là gì?', N'Họa/Hoạch', N'Hải', N'Hành', N'Hào', 'A'),
-(N'「外国語」 nghĩa là gì?', N'Tiếng mẹ đẻ', N'Ngoại ngữ', N'Ngôn ngữ ký hiệu', N'Văn học', 'B'),
-(N'Từ nào sau đây viết đúng chữ "Hải ngoại"?', N'外海', N'海外', N'毎外', N'海外', 'B');
-
--- KANJI - 3
-INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES
-(N'Khi họp với khách hàng ngoài công ty, ta dùng từ:', N'社内', N'社外', N'家外', N'校外', 'B'),
-(N'Để nói "Lập kế hoạch dự án", ta dùng cụm từ nào?', N'計画を立てる', N'計画を歌う', N'計画を歩く', N'計画を飲む', 'A'),
-(N'Trái nghĩa với 「社外」 (Ngoài công ty) là gì?', N'社内', N'社員', N'会社', N'社会', 'A'),
-(N'Trong IT, tài liệu không được lộ ra ngoài gọi là 「____秘」', N'社外', N'海外', N'校外', N'門外', 'A'),
-(N'Điền từ: 「将来、____でエンジニアとして働きたい」', N'海水', N'海外', N'音楽', N'大好物', 'B'),
-(N'Câu 「家の外は寒いです」 nghĩa là gì?', N'Trong nhà lạnh', N'Bên ngoài nhà lạnh', N'Nhà tôi lạnh', N'Đi xa thì lạnh', 'B'),
-(N'Cụm từ 「短歌」 (Tanka) chỉ thể loại gì?', N'Bài hát dài', N'Thơ ngắn', N'Nhạc phim', N'Kế hoạch ngắn', 'B'),
-(N'Từ 「好」 trong 「好き」 được ghép bởi bộ gì?', N'Bộ Nhân và Bộ Thủy', N'Bộ Nữ và Bộ Tử', N'Bộ Nhật và Bộ Nguyệt', N'Bộ Khẩu và Bộ Lực', 'B'),
-(N'Phân biệt 「楽しい」 và 「面白い」: Từ nào chỉ niềm vui cảm xúc khi tham gia?', N'面白い', N'楽しい', N'Cả hai', N'Không từ nào', 'B'),
-(N'Khi đi công tác nước ngoài, BrSE gọi là 「____出張」', N'海外', N'社外', N'家外', N'国外', 'A');
-
--- KANJI - 4
-INSERT INTO QuizQuestions (question, option_a, option_b, option_c, option_d, correct_answer) VALUES
-(N'Chữ 「楽」 có hai âm đọc Kun là gì?', N'たのしい / らく', N'うた / がく', N'おと / おん', N'suki / kou', 'A'),
-(N'Chữ nào có bộ "Hành" (đi)?', N'旅', N'行', N'外', N'海', 'B'),
-(N'Trong từ 「映画」, chữ 「映」 có nghĩa là gì?', N'Bức tranh', N'Phản chiếu/Ánh', N'Kế hoạch', N'Âm thanh', 'B'),
-(N'Từ nào không liên quan đến chủ đề di chuyển/du lịch?', N'旅', N'旅行', N'音楽', N'海外', 'C'),
-(N'Tìm lỗi sai: 「外国語を歌います」 (Tôi hát ngoại ngữ)', N'Sai động từ', N'Sai danh từ', N'Sai trợ từ', N'Không sai', 'A'),
-(N'Chữ 「海」 có bộ gì bên trái?', N'Bộ Hỏa', N'Bộ Thủy (3 chấm thủy)', N'Bộ Mộc', N'Bộ Kim', 'B');
+(N'「いきます」の辞書形は何ですか？', N'いきる', N'いく', N'いった', N'いけば', 'B'),
+(N'「みます」の辞書形は何ですか？', N'みた', N'みる', N'みよう', N'みて', 'B'),
+(N'「べんきょうします」 thuộc nhóm động từ nào?', N'Nhóm 1', N'Nhóm 3', N'Nhóm 2', N'Nhóm đặc biệt', 'B'),
+(N'Động từ nhóm 1 chuyển sang thể từ điển như thế nào?', N'ます → う', N'ます → る', N'ます → た', N'ます → て', 'A'),
+(N'「しゅみはN/Vることです」 nghĩa là gì?', N'Tôi có thể ...', N'Sở thích là ...', N'Tôi muốn ...', N'Tôi đang ...', 'B'),
+(N'わたしのしゅみはおんがくを（　　　）ことです。', N'ききます', N'きく', N'きいて', N'きいた', 'B'),
+(N'彼の趣味は映画を（　　　）ことです。', N'みます', N'みる', N'みた', N'みて', 'B'),
+(N'一週間に一回映画を（　　　）。', N'みる', N'みます', N'みました', N'みたい', 'B'),
+(N'「いつも」 nghĩa là gì?', N'Luôn luôn', N'Không lắm', N'Hoàn toàn không', N'Thỉnh thoảng', 'A'),
+(N'「よく」 nghĩa là gì?', N'Luôn luôn', N'Thường', N'Không lắm', N'Hoàn toàn không', 'B'),
+(N'「ときどき」 nghĩa là gì?', N'Thường', N'Luôn luôn', N'Thỉnh thoảng', N'Không bao giờ', 'C'),
+(N'「あまり」 thường đi với dạng nào?', N'Khẳng định', N'Phủ định', N'Câu hỏi', N'Mệnh lệnh', 'B'),
+(N'「ぜんぜん」 thường đi với dạng nào?', N'Khẳng định', N'Câu hỏi', N'Phủ định', N'Mệnh lệnh', 'C'),
+(N'私はあまりテレビを（　　　）。', N'みます', N'みません', N'みました', N'みたい', 'B'),
+(N'彼はぜんぜんお酒を（　　　）。', N'のみます', N'のみたい', N'のみません', N'のみました', 'C'),
+(N'Nができます nghĩa là gì?', N'Có thể làm N', N'Muốn N', N'Đã làm N', N'Không thể N', 'A'),
+(N'私は日本語が（　　　）。', N'します', N'できます', N'あります', N'います', 'B'),
+(N'私は漢字を読むことが（　　　）。', N'あります', N'できます', N'います', N'します', 'B'),
+(N'「なかなか〜できません」 nghĩa là gì?', N'Rất dễ', N'Luôn luôn làm', N'Khó mà làm được', N'Thường làm', 'C'),
+(N'彼はなかなか日本語を話すことが（　　　）。', N'できます', N'できません', N'しました', N'します', 'B'),
+(N'V1て、V2て…Vます dùng để làm gì?', N'Giải thích lý do', N'Hỏi đường', N'Liệt kê hành động', N'Đưa ra mệnh lệnh', 'C'),
+(N'ジョギングをして、シャワーをあびて、（　　　）。', N'いく', N'いきます', N'いった', N'いきたい', 'B'),
+(N'Vて、それからVます nghĩa là gì?', N'Không làm V', N'Làm V rồi sau đó làm V', N'Làm V thường xuyên', N'Làm V trong quá khứ', 'B'),
+(N'おきて、それからあさごはんを（　　　）。', N'たべる', N'たべます', N'たべたい', N'たべました', 'B'),
+(N'どうやってVますか nghĩa là gì?', N'Làm cách nào để V?', N'Tại sao V?', N'Bao giờ V?', N'Ở đâu V?', 'A'),
+(N'どうやってきっぷを（　　　）か。', N'かう', N'かいます', N'かった', N'かいたい', 'B'),
+(N'私は音楽を（　　　）ことが好きです。', N'ききます', N'きく', N'きいて', N'きいた', 'B'),
+(N'彼はダンスを（　　　）ことが好きです。', N'します', N'する', N'した', N'して', 'B'),
+(N'私は週末によく映画を（　　　）。', N'みる', N'みます', N'みました', N'みたい', 'B'),
+(N'彼はときどき海へ（　　　）。', N'いく', N'いきます', N'いった', N'いきたい', 'B'),
+(N'私は日本語を話すことが（　　　）。', N'します', N'できます', N'あります', N'います', 'B'),
+(N'私はピアノをひくことが（　　　）。', N'しました', N'できます', N'します', N'ありました', 'B'),
+(N'私はあまりスポーツを（　　　）。', N'します', N'しません', N'しました', N'したい', 'B'),
+(N'彼はぜんぜんコーヒーを（　　　）。', N'のみます', N'のみません', N'のみました', N'のみたい', 'B'),
+(N'週末にジョギングをして、それから友だちと（　　　）。', N'あう', N'あいます', N'あった', N'あいたい', 'B'),
+(N'私はうちへ帰って、それからテレビを（　　　）。', N'みる', N'みます', N'みたい', N'みました', 'B');
