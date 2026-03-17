@@ -3,18 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Mutiple Choice Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
     <div class="main-wrapper">
-        <header>
-            <h1>Mutiple Choice Quiz</h1>
-            <div class="control-panel">
-                <button onclick="refreshQuiz()" class="btn-refresh-top">🔄 Làm mới bài thi</button>
-            </div>
-        </header>
+        <div class="glass-container">
+            <header>
+                <h1>Multiple Choice Quiz</h1>
+                <div class="control-panel">
+                    <button onclick="refreshQuiz()" class="btn-refresh-top">
+                        <span class="icon">🔄</span> Làm mới bài thi
+                    </button>
+                </div>
+            </header>
 
-        <div id="quiz-container">Đang tải câu hỏi...</div>
+            <div id="quiz-container">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Đang tải câu hỏi...</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -42,20 +59,20 @@
             const container = document.getElementById('quiz-container');
             container.innerHTML = questions.map((q, i) => {
                 const isMulti = q.correct_answer.trim().length > 1;
-                
-                // Kiểm tra xem q.question có phải là tên file ảnh (.png, .jpg, .svg) không
                 const isImageQuestion = q.question.match(/\.(jpeg|jpg|gif|png|svg)$/i);
                 
-                // Nếu là ảnh, tạo thẻ <img>, nếu không thì hiển thị chữ bình thường
                 const questionContent = isImageQuestion 
                     ? `<div class="image-question">
-                        <p class="q-num">Question ${i+1}:</p>
+                        <p class="q-num">Question ${i+1}</p>
                         <img src="/img/${q.question}" alt="Question Image" class="main-q-img">
                     </div>`
-                    : `<div class="q-text">Question ${i+1}: ${q.question}</div>`;
+                    : `<div class="question-header">
+                        <p class="q-num">Question ${i+1}</p>
+                        <div class="q-text">${q.question}</div>
+                       </div>`;
 
                 return `
-                <div class="quiz-card" id="card-${q.id}">
+                <div class="quiz-card" id="card-${q.id}" style="animation-delay: ${i * 0.1}s">
                     ${questionContent}
 
                     <div class="options">
@@ -65,7 +82,7 @@
                                     name="q${q.id}" 
                                     value="${l}" 
                                     onchange="checkInstant(${q.id}, '${l}')">
-                                <div class="box"><b>${l}.</b> ${q['option_'+l.toLowerCase()]}</div>
+                                <div class="box"><b>${l}.</b> <span>${q['option_'+l.toLowerCase()]}</span></div>
                             </label>
                         `).join('')}
                     </div>
@@ -74,7 +91,6 @@
             }).join('');
         }
 
-        // Logic checkInstant giữ nguyên như yêu cầu trước của bạn
         function checkInstant(qId, label) {
             const question = questions.find(q => q.id === qId);
             const card = document.getElementById(`card-${qId}`);
@@ -91,29 +107,29 @@
                 const box = selectedInput.nextElementSibling;
                 if (selectedStr === correctAns) {
                     box.classList.add('correct');
-                    msg.innerHTML = "Chính xác! ✔️";
-                    msg.style.color = "green";
+                    msg.innerHTML = '<span class="icon">✨</span> Chính xác! Bạn làm rất tốt.';
+                    msg.style.color = "var(--success)";
                 } else {
                     box.classList.add('wrong');
-                    msg.innerHTML = `Sai rồi. Đáp án đúng: ${correctAns}`;
-                    msg.style.color = "red";
+                    msg.innerHTML = `<span class="icon">❌</span> Sai rồi. Đáp án đúng là <b>${correctAns}</b>`;
+                    msg.style.color = "var(--error)";
                 }
                 card.querySelectorAll('input').forEach(i => i.disabled = true);
             } else {
                 if (selectedStr.length === correctAns.length) {
                     if (selectedStr === correctAns) {
                         selectedInputs.forEach(i => i.nextElementSibling.classList.add('correct'));
-                        msg.innerHTML = "Chính xác! ✔️";
-                        msg.style.color = "green";
+                        msg.innerHTML = '<span class="icon">✨</span> Tuyệt vời! Tất cả đều đúng.';
+                        msg.style.color = "var(--success)";
                     } else {
                         selectedInputs.forEach(i => i.nextElementSibling.classList.add('wrong'));
-                        msg.innerHTML = `Sai rồi. Đáp án đúng: ${correctAns}`;
-                        msg.style.color = "red";
+                        msg.innerHTML = `<span class="icon">❌</span> Chưa đúng. Đáp án đúng là: <b>${correctAns}</b>`;
+                        msg.style.color = "var(--error)";
                     }
                     card.querySelectorAll('input').forEach(i => i.disabled = true);
                 } else {
-                    msg.innerHTML = `Hãy chọn đủ ${correctAns.length} đáp án...`;
-                    msg.style.color = "orange";
+                    msg.innerHTML = `<span class="icon">🔔</span> Hãy chọn đủ ${correctAns.length} đáp án...`;
+                    msg.style.color = "var(--warning)";
                 }
             }
         }
