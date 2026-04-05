@@ -1,4 +1,4 @@
-﻿USE quiz_db;
+USE quiz_db;
 GO
 
 CREATE TABLE UserResponses (
@@ -15,6 +15,8 @@ CREATE TABLE QuizQuestions (
     option_b NVARCHAR(255),
     option_c NVARCHAR(255),
     option_d NVARCHAR(255),
+    option_e NVARCHAR(255),
+    option_f NVARCHAR(255),
     correct_answer CHAR(1)
 );
 
@@ -29,6 +31,5 @@ TRUNCATE TABLE QuizQuestions;
 GO
 
 SELECT * FROM QuizQuestions;
-
 
 

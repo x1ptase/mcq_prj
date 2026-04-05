@@ -7,7 +7,7 @@ app.use(express.static('public'));
 
 const config = {
     user: 'sa',
-    password: '12345',
+    password: '12345Aa@',
     server: 'localhost',
     database: 'quiz_db',
     options: { encrypt: true, trustServerCertificate: true }
@@ -17,7 +17,14 @@ const config = {
 app.get('/get-questions', async (req, res) => {
     try {
         let pool = await sql.connect(config);
-        let result = await pool.request().query('SELECT * FROM QuizQuestions ORDER BY id ASC');
+        let result = await pool.request().query('SELECT *, DB_NAME() AS _db, @@SERVERNAME AS _srv FROM QuizQuestions ORDER BY id ASC');
+        
+        // Logs quan trọng để debug
+        if (result.recordset.length > 0) {
+            console.log(`[DEBUG] Kết nối tới DB: ${result.recordset[0]._db} trên Server: ${result.recordset[0]._srv}`);
+        }
+        console.log(`[DEBUG] Số lượng câu hỏi tìm thấy: ${result.recordset.length}`);
+        
         res.json(result.recordset);
     } catch (err) {
         console.error("Lỗi GET:", err.message);
@@ -36,6 +43,7 @@ app.post('/submit-all', async (req, res) => {
         const dbAnswers = dbData.recordset;
 
         let score = 0;
+        let submittedAnswers = [];
         for (const uAns of userAnswers) {
             const q = dbAnswers.find(item => item.id === uAns.qId);
             
@@ -43,9 +51,18 @@ app.post('/submit-all', async (req, res) => {
             const correctStr = q.correct_answer.trim().toUpperCase();
             const userStr = uAns.answer.trim().toUpperCase();
 
+            let isCorrect = false;
             if (q && userStr === correctStr) {
                 score++;
+                isCorrect = true;
             }
+
+            submittedAnswers.push({
+                question_id: uAns.qId,
+                selected_answer: userStr,
+                correct_answer: correctStr,
+                is_correct: isCorrect
+            });
 
             // Lưu lịch sử
             await pool.request()
@@ -53,7 +70,7 @@ app.post('/submit-all', async (req, res) => {
                 .input('ans', sql.VarChar, userStr)
                 .query('INSERT INTO UserResponses (question_id, selected_option) VALUES (@qId, @ans)');
         }
-        res.json({ success: true, score, total: dbAnswers.length });
+        res.json({ success: true, score, total: dbAnswers.length, data: submittedAnswers });
     } catch (err) {
         console.error("Lỗi POST (Kiểm tra cột SQL!):", err.message);
         res.status(500).json({ success: false, message: err.message });

@@ -2,7 +2,8 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Mutiple Choice Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Choice Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -19,7 +20,7 @@
             <header>
                 <h1>Multiple Choice Quiz</h1>
                 <div class="control-panel">
-                    <button onclick="refreshQuiz()" class="btn-refresh-top">
+                    <button onclick="refreshQuiz()" class="btn-refresh-top" id="btn-refresh">
                         <span class="icon">🔄</span> Làm mới bài thi
                     </button>
                 </div>
@@ -43,48 +44,82 @@
                 const res = await fetch('/get-questions');
                 questions = await res.json();
                 render();
-            } catch (e) { document.getElementById('quiz-container').innerText = "Lỗi tải dữ liệu!"; }
+            } catch (e) {
+                document.getElementById('quiz-container').innerText = "Lỗi tải dữ liệu!";
+            }
         }
 
         // Hàm Reset toàn bộ bài
         function refreshQuiz() {
-            // Hiệu ứng xác nhận nhẹ
-            if(confirm("Bạn có muốn xóa hết kết quả và làm lại từ đầu không?")) {
-                render(); // Vẽ lại giao diện từ mảng questions đã lưu
+            if (confirm("Bạn có muốn xóa hết kết quả và làm lại từ đầu không?")) {
+                render();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
+        function getCorrectAns(q) {
+            return (q.correct_answer || '').toString().replace(/[^a-zA-Z]/g, '').trim().toUpperCase();
+        }
+
         function render() {
             const container = document.getElementById('quiz-container');
+            if (!questions || questions.length === 0) {
+                container.innerHTML = '<div class="loading-state"><p>Không có câu hỏi nào để hiển thị.</p></div>';
+                return;
+            }
+
             container.innerHTML = questions.map((q, i) => {
-                const isMulti = q.correct_answer.trim().length > 1;
-                const isImageQuestion = q.question.match(/\.(jpeg|jpg|gif|png|svg)$/i);
-                
-                const questionContent = isImageQuestion 
+                const correctAns = getCorrectAns(q);
+                const isMulti = correctAns.length > 1;
+                const inputType = isMulti ? 'checkbox' : 'radio';
+
+                // Kiểm tra an toàn trước khi match regex
+                const questionText = q.question || '';
+                const isImageQuestion = typeof questionText === 'string' && questionText.match(/\.(jpeg|jpg|gif|png|svg)$/i);
+
+                const questionContent = isImageQuestion
                     ? `<div class="image-question">
-                        <p class="q-num">Question ${i+1}</p>
-                        <img src="/img/${q.question}" alt="Question Image" class="main-q-img">
-                    </div>`
+                        <p class="q-num">Question ${i + 1}</p>
+                        <img src="/img/${questionText}" alt="Question Image" class="main-q-img">
+                       </div>`
                     : `<div class="question-header">
-                        <p class="q-num">Question ${i+1}</p>
-                        <div class="q-text">${q.question}</div>
+                        <p class="q-num">Question ${i + 1}</p>
+                        <div class="q-text">${questionText || ' (Nội dung câu hỏi trống)'}</div>
                        </div>`;
 
+                // Badge cho câu multi-answer
+                const multiBadge = isMulti
+                    ? `<div class="multi-badge" id="badge-${q.id}">
+                           <span class="badge-icon">☑</span>
+                           Chọn <b>${correctAns.length}</b> đáp án &nbsp;·&nbsp;
+                           <span id="sel-count-${q.id}" class="sel-count">0/${correctAns.length}</span> đã chọn
+                       </div>`
+                    : '';
+
                 return `
-                <div class="quiz-card" id="card-${q.id}" style="animation-delay: ${i * 0.1}s">
+                <div class="quiz-card" id="card-${q.id}" style="animation-delay: ${i * 0.08}s">
                     ${questionContent}
+                    ${multiBadge}
 
                     <div class="options">
-                        ${['A','B','C','D'].map(l => `
-                            <label class="opt">
-                                <input type="${isMulti ? 'checkbox' : 'radio'}" 
-                                    name="q${q.id}" 
-                                    value="${l}" 
+                        ${['A', 'B', 'C', 'D', 'E', 'F'].map(l => {
+                            const optionText = q['option_' + l.toLowerCase()];
+                            if (optionText === null || optionText === undefined || optionText === '') {
+                                if (l === 'C' || l === 'D' || l === 'E' || l === 'F') return '';
+                            }
+                            return `
+                            <label class="opt" id="opt-${q.id}-${l}">
+                                <input type="${inputType}"
+                                    name="q${q.id}"
+                                    value="${l}"
+                                    id="inp-${q.id}-${l}"
                                     onchange="checkInstant(${q.id}, '${l}')">
-                                <div class="box"><b>${l}.</b> <span>${q['option_'+l.toLowerCase()]}</span></div>
-                            </label>
-                        `).join('')}
+                                <div class="box">
+                                    <b>${l}.</b>
+                                    <span>${optionText || ''}</span>
+                                </div>
+                            </label>`;
+                        }).join('')}
                     </div>
                     <div id="msg-${q.id}" class="feedback-msg"></div>
                 </div>`;
@@ -95,42 +130,89 @@
             const question = questions.find(q => q.id === qId);
             const card = document.getElementById(`card-${qId}`);
             const msg = document.getElementById(`msg-${qId}`);
-            const correctAns = question.correct_answer.trim().toUpperCase();
-            
+            const correctAns = getCorrectAns(question);
+
             const selectedInputs = Array.from(card.querySelectorAll(`input[name="q${qId}"]:checked`));
             const selectedStr = selectedInputs.map(i => i.value).sort().join('');
 
-            card.querySelectorAll('.box').forEach(b => b.classList.remove('correct', 'wrong'));
+            // Reset trạng thái visual
+            card.querySelectorAll('.box').forEach(b => b.classList.remove('correct', 'wrong', 'correct-missed'));
 
             if (correctAns.length === 1) {
+                // === CÂU ĐƠN (radio) ===
                 const selectedInput = card.querySelector(`input[name="q${qId}"]:checked`);
+                if (!selectedInput) return;
                 const box = selectedInput.nextElementSibling;
                 if (selectedStr === correctAns) {
                     box.classList.add('correct');
                     msg.innerHTML = '<span class="icon">✨</span> Chính xác! Bạn làm rất tốt.';
-                    msg.style.color = "var(--success)";
+                    msg.className = 'feedback-msg msg-success';
                 } else {
                     box.classList.add('wrong');
+                    // Highlight đáp án đúng
+                    const correctBox = card.querySelector(`input[value="${correctAns}"]`);
+                    if (correctBox) correctBox.nextElementSibling.classList.add('correct-missed');
                     msg.innerHTML = `<span class="icon">❌</span> Sai rồi. Đáp án đúng là <b>${correctAns}</b>`;
-                    msg.style.color = "var(--error)";
+                    msg.className = 'feedback-msg msg-error';
                 }
                 card.querySelectorAll('input').forEach(i => i.disabled = true);
+
             } else {
-                if (selectedStr.length === correctAns.length) {
-                    if (selectedStr === correctAns) {
-                        selectedInputs.forEach(i => i.nextElementSibling.classList.add('correct'));
-                        msg.innerHTML = '<span class="icon">✨</span> Tuyệt vời! Tất cả đều đúng.';
-                        msg.style.color = "var(--success)";
-                    } else {
-                        selectedInputs.forEach(i => i.nextElementSibling.classList.add('wrong'));
-                        msg.innerHTML = `<span class="icon">❌</span> Chưa đúng. Đáp án đúng là: <b>${correctAns}</b>`;
-                        msg.style.color = "var(--error)";
-                    }
-                    card.querySelectorAll('input').forEach(i => i.disabled = true);
-                } else {
-                    msg.innerHTML = `<span class="icon">🔔</span> Hãy chọn đủ ${correctAns.length} đáp án...`;
-                    msg.style.color = "var(--warning)";
+                // === CÂU NHIỀU ĐÁP ÁN (checkbox) ===
+
+                // Cập nhật counter hiển thị
+                const counter = document.getElementById(`sel-count-${qId}`);
+                if (counter) counter.textContent = `${selectedInputs.length}/${correctAns.length}`;
+
+                if (selectedInputs.length < correctAns.length) {
+                    // Mở khoá lại tất cả các ô trong trường hợp người dùng bỏ chọn
+                    card.querySelectorAll('input').forEach(i => i.disabled = false);
+                    const badge = document.getElementById(`badge-${qId}`);
+                    if (badge) badge.classList.remove('badge-done');
+
+                    // Chưa chọn đủ → chỉ thông báo
+                    const remaining = correctAns.length - selectedInputs.length;
+                    msg.innerHTML = `<span class="icon">🔔</span> Hãy chọn thêm <b>${remaining}</b> đáp án nữa...`;
+                    msg.className = 'feedback-msg msg-warning';
+                    return;
                 }
+
+                // Đã chọn đủ số lượng → kiểm tra kết quả
+                if (selectedStr === correctAns) {
+                    // Tất cả đều đúng
+                    selectedInputs.forEach(i => i.nextElementSibling.classList.add('correct'));
+                    msg.innerHTML = `<span class="icon">✨</span> Tuyệt vời! Bạn đã chọn đúng cả ${correctAns.length} đáp án.`;
+                    msg.className = 'feedback-msg msg-success';
+                } else {
+                    // Sai → tô đỏ lựa chọn sai, tô xanh đáp án đúng bị bỏ sót
+                    selectedInputs.forEach(inp => {
+                        const box = inp.nextElementSibling;
+                        if (correctAns.includes(inp.value)) {
+                            box.classList.add('correct'); // Đúng và đã chọn
+                        } else {
+                            box.classList.add('wrong');   // Sai và đã chọn
+                        }
+                    });
+                    // Highlight các đáp án đúng bị bỏ lỡ
+                    [...correctAns].forEach(letter => {
+                        if (!selectedStr.includes(letter)) {
+                            const missedBox = card.querySelector(`input[value="${letter}"]`);
+                            if (missedBox) missedBox.nextElementSibling.classList.add('correct-missed');
+                        }
+                    });
+                    msg.innerHTML = `<span class="icon">❌</span> Chưa đúng. Đáp án đúng là: <b>${correctAns}</b>`;
+                    msg.className = 'feedback-msg msg-error';
+                }
+
+                // CHỈ KHOÁ CÁC Ô CHƯA CHỌN (để không chọn quá số lượng được phép)
+                // Các ô đã chọn VẪN ĐƯỢC GIỮ ENABLE để người dùng có thể click lần 2 để hủy chọn
+                card.querySelectorAll('input').forEach(i => {
+                    if (!i.checked) i.disabled = true;
+                });
+                
+                // Cập nhật badge
+                const badge = document.getElementById(`badge-${qId}`);
+                if (badge) badge.classList.add('badge-done');
             }
         }
 
