@@ -122,11 +122,10 @@ toward the concept under investigation', N'Stapel', N'Semantic differential', N'
 collected information in order to improve strategic decision-making and to improve customer_____.', N'Metrics', N'Satisfaction', N'Appearance', N'Focus', N'', N'', 'B'),
 (N'The reflection on the action research cycle should be eveluated in terms of_____, quality of
 relationships, quality of action research process and outcomes.', N'Context', N'Attitude', N'Motivation', N'Beliefs', N'Perceptions', N'', N'A'),
-(N'Well-trained researcher can enhance responserates and increase_____and persuasion of key
+(N'Well-trained researcher can enhance response rates and increase_____and persuasion of key
 informants', N'Refusals', N'Conversion', N'Follow-ups', N'Suggestions', N'', N'', 'B'),
 (N'Well-trained researcher can enhance_____rates and increase conversion and persuasion of key informants', N'Response', N'Percentage', N'Question', N'Questionnaire', N'', N'', 'A');
 GO
-
 
 
 -- SHORT QUESTIONS
