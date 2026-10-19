@@ -5,4 +5,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 dist/
-public/app.js
+public/*.js

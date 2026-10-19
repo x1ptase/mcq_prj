@@ -17,18 +17,9 @@ type OptionKey = 'option_a' | 'option_b' | 'option_c' | 'option_d' | 'option_e' 
 
 let questions: Question[] = [];
 let results: Record<number, Status> = {}; // qId -> trạng thái
-
-function $<T extends HTMLElement = HTMLElement>(id: string): T {
-    const el = document.getElementById(id);
-    if (!el) throw new Error(`Missing element #${id}`);
-    return el as T;
-}
-
-function toggleTheme(): void {
-    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) { /* storage không khả dụng */ }
-}
+let courses: Course[] = [];
+let courseId: number | null = null;
+let attemptSaved = false;
 
 function setStatus(qId: number, value: Status | null): void {
     if (value) results[qId] = value; else delete results[qId];
@@ -70,7 +61,31 @@ function renderSummary(total: number, correct: number, done: number): void {
     el.innerHTML = `<h3>🎉 Hoàn thành bài thi</h3>
         <div class="big">${correct}/${total}</div>
         <p>${Math.round(correct / total * 100)}% câu trả lời đúng</p>
-        <button class="btn" onclick="refreshQuiz()">🔄 Làm lại</button>`;
+        <button class="btn" onclick="refreshQuiz()">🔄 Làm lại</button>
+        <div id="save-note" class="save-note"></div>`;
+    saveAttempt();
+}
+
+// Lưu kết quả lên server (chỉ khi đã đăng nhập, mỗi lần làm chỉ lưu một lần)
+async function saveAttempt(): Promise<void> {
+    if (attemptSaved || courseId === null) return;
+    const note = $('save-note');
+    if (!currentUser) {
+        note.textContent = 'Đăng nhập để lưu kết quả vào lịch sử.';
+        return;
+    }
+    attemptSaved = true;
+    const answers = questions.map(q => {
+        const picked = Array.from(document.querySelectorAll<HTMLInputElement>(`input[name="q${q.id}"]:checked`));
+        return { qId: q.id, answer: picked.map(i => i.value).sort().join('') };
+    });
+    try {
+        await api('/api/attempts', 'POST', { courseId, answers });
+        note.innerHTML = '✅ Đã lưu vào <a href="/history.html">lịch sử</a>.';
+    } catch (e) {
+        attemptSaved = false;
+        note.textContent = 'Không lưu được kết quả: ' + (e as Error).message;
+    }
 }
 
 function renderNav(): void {
@@ -83,14 +98,72 @@ function goTo(qId: number): void {
     $(`card-${qId}`).scrollIntoView({ block: 'start' });
 }
 
-// Tải câu hỏi lần đầu
+// Tải môn học, tài khoản, rồi câu hỏi của môn đang chọn
 async function load(): Promise<void> {
     try {
-        const res = await fetch('/get-questions');
-        questions = await res.json();
+        [courses] = await Promise.all([api<Course[]>('/api/courses'), fetchMe()]);
+        renderAuthArea();
+        const nonEmpty = courses.filter(c => c.question_count > 0);
+        const wanted = Number(new URLSearchParams(location.search).get('course'));
+        const initial = courses.find(c => c.id === wanted) ?? nonEmpty[0] ?? courses[0];
+        renderCourseSelect(initial?.id ?? null);
+        if (initial) await selectCourse(initial.id);
+        else render();
+    } catch (e) {
+        $('quiz-container').innerText = 'Lỗi tải dữ liệu!';
+    }
+}
+
+function renderCourseSelect(selected: number | null): void {
+    const sel = $<HTMLSelectElement>('course-select');
+    sel.innerHTML = courses.map(c =>
+        `<option value="${c.id}">${escapeHtml(c.code)} – ${escapeHtml(c.name)} (${c.question_count})</option>`).join('');
+    if (selected !== null) sel.value = String(selected);
+}
+
+async function selectCourse(id: number): Promise<void> {
+    courseId = id;
+    $<HTMLSelectElement>('course-select').value = String(id);
+    history.replaceState(null, '', `?course=${id}`);
+    $('quiz-container').innerHTML = '<div class="loading-state"><div class="spinner"></div><p>Đang tải câu hỏi...</p></div>';
+    try {
+        questions = await api<Question[]>(`/api/courses/${id}/questions`);
         render();
     } catch (e) {
         $('quiz-container').innerText = 'Lỗi tải dữ liệu!';
+    }
+}
+
+// ===== Đăng nhập / đăng ký =====
+let authMode: 'login' | 'register' = 'login';
+
+function openLogin(): void {
+    setAuthMode('login');
+    $<HTMLDialogElement>('auth-dialog').showModal();
+}
+
+function setAuthMode(mode: 'login' | 'register'): void {
+    authMode = mode;
+    $('auth-title').textContent = mode === 'login' ? 'Đăng nhập' : 'Tạo tài khoản';
+    $('auth-submit').textContent = mode === 'login' ? 'Đăng nhập' : 'Đăng ký';
+    $('auth-switch').textContent = mode === 'login' ? 'Chưa có tài khoản? Đăng ký' : 'Đã có tài khoản? Đăng nhập';
+    $('auth-error').textContent = '';
+}
+
+async function submitAuth(ev: Event): Promise<void> {
+    ev.preventDefault();
+    const username = $<HTMLInputElement>('auth-username').value.trim();
+    const password = $<HTMLInputElement>('auth-password').value;
+    try {
+        await api(`/api/auth/${authMode}`, 'POST', { username, password });
+        $<HTMLDialogElement>('auth-dialog').close();
+        $<HTMLInputElement>('auth-password').value = '';
+        await fetchMe();
+        renderAuthArea();
+        // Nếu vừa làm xong bài khi chưa đăng nhập thì lưu luôn
+        if (document.getElementById('summary') && currentUser) saveAttempt();
+    } catch (e) {
+        $('auth-error').textContent = (e as Error).message;
     }
 }
 
@@ -109,6 +182,7 @@ function getCorrectAns(q: Question): string {
 function render(): void {
     const container = $('quiz-container');
     results = {};
+    attemptSaved = false;
     if (!questions || questions.length === 0) {
         container.innerHTML = '<div class="loading-state"><p>Không có câu hỏi nào để hiển thị.</p></div>';
         return;

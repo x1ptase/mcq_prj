@@ -31,7 +31,9 @@
                     <div class="progress-wrong" id="bar-wrong" style="width:0"></div>
                 </div>
             </div>
+            <select id="course-select" class="select" aria-label="Chọn môn" onchange="selectCourse(Number(this.value))"></select>
             <div class="actions">
+                <span id="auth-area" class="actions"></span>
                 <button class="btn btn-icon" id="btn-theme" onclick="toggleTheme()" title="Đổi giao diện sáng/tối" aria-label="Đổi giao diện sáng/tối">🌓</button>
                 <button class="btn" onclick="refreshQuiz()" id="btn-refresh">🔄 <span class="label">Làm mới</span></button>
             </div>
@@ -63,6 +65,25 @@
         </aside>
     </div>
 
+    <dialog id="auth-dialog" class="dialog">
+        <form onsubmit="submitAuth(event)">
+            <h2 id="auth-title">Đăng nhập</h2>
+            <label>Tên đăng nhập
+                <input id="auth-username" class="input" autocomplete="username" required minlength="3" maxlength="30">
+            </label>
+            <label>Mật khẩu
+                <input id="auth-password" class="input" type="password" autocomplete="current-password" required minlength="6">
+            </label>
+            <div id="auth-error" class="form-error" role="alert"></div>
+            <div class="dialog-actions">
+                <button type="button" class="btn" id="auth-switch" onclick="setAuthMode(authMode === 'login' ? 'register' : 'login')"></button>
+                <button type="button" class="btn" onclick="this.closest('dialog').close()">Hủy</button>
+                <button type="submit" class="btn btn-primary" id="auth-submit">Đăng nhập</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="common.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

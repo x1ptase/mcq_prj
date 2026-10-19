@@ -7,5 +7,5 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["app.ts"]
+  "include": ["common.ts", "app.ts", "history.ts", "admin.ts"]
 }
