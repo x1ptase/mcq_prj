@@ -1,0 +1,23 @@
+{
+  "name": "mcq-backend",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p .",
+    "start": "node dist/server.js",
+    "typecheck": "tsc -p . --noEmit"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mssql": "^12.2.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/mssql": "^12.3.0",
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

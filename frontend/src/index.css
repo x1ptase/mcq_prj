@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* Bảng màu cổ điển: giấy da, mực, burgundy, xanh rừng, vàng đồng */
+:root {
+    --paper: #efe4cc;
+    --surface: #f8f1e1;
+    --surface-2: #eadcbd;
+    --ink: #2a2017;
+    --muted: #6d5b45;
+    --rule: #c4ad82;
+    --burgundy: #7b1e2b;
+    --burgundy-soft: #ecd3cf;
+    --forest: #2e5d3b;
+    --forest-soft: #d6e2c9;
+    --oxblood: #a3321f;
+    --oxblood-soft: #f0d2c6;
+    --gold: #a97b1e;
+    --gold-soft: #f1dfae;
+    --shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 2px 0 rgba(60, 40, 10, 0.08), 0 10px 24px -12px rgba(60, 40, 10, 0.35);
+}
+
+[data-theme="dark"] {
+    --paper: #17130e;
+    --surface: #211b14;
+    --surface-2: #2c2419;
+    --ink: #eadfc6;
+    --muted: #a8967a;
+    --rule: #55462f;
+    --burgundy: #d7777f;
+    --burgundy-soft: #3b1f23;
+    --forest: #86b78f;
+    --forest-soft: #1f2e22;
+    --oxblood: #e08a6e;
+    --oxblood-soft: #3a211a;
+    --gold: #d9ac52;
+    --gold-soft: #3a2f16;
+    --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 12px 28px -14px rgba(0, 0, 0, 0.7);
+}
+
+@theme inline {
+    --color-paper: var(--paper);
+    --color-surface: var(--surface);
+    --color-surface-2: var(--surface-2);
+    --color-ink: var(--ink);
+    --color-muted: var(--muted);
+    --color-rule: var(--rule);
+    --color-burgundy: var(--burgundy);
+    --color-burgundy-soft: var(--burgundy-soft);
+    --color-forest: var(--forest);
+    --color-forest-soft: var(--forest-soft);
+    --color-oxblood: var(--oxblood);
+    --color-oxblood-soft: var(--oxblood-soft);
+    --color-gold: var(--gold);
+    --color-gold-soft: var(--gold-soft);
+    --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+    --font-body: "Lora", Georgia, "Times New Roman", serif;
+    --shadow-paper: var(--shadow);
+}
+
+@layer base {
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+    body {
+        margin: 0;
+        font-family: var(--font-body);
+        color: var(--ink);
+        background-color: var(--paper);
+        /* hạt giấy rất nhẹ */
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .1  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        line-height: 1.6;
+        min-height: 100vh;
+    }
+
+    h1, h2, h3 { font-family: var(--font-display); letter-spacing: 0.005em; }
+
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+}
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-sm border border-rule bg-surface px-3.5 py-1.5 text-sm font-semibold text-ink no-underline transition;
+        cursor: pointer;
+    }
+    .btn:hover { @apply border-burgundy text-burgundy; }
+    .btn:disabled { @apply cursor-not-allowed opacity-50; }
+    .btn-primary { @apply border-burgundy bg-burgundy text-paper; }
+    .btn-primary:hover { @apply text-paper; filter: brightness(1.12); }
+    .btn-danger:hover { @apply border-oxblood text-oxblood; }
+
+    .input {
+        @apply w-full rounded-sm border border-rule bg-surface px-3 py-2 text-ink;
+        font: inherit;
+    }
+    .input::placeholder { color: var(--muted); opacity: 0.7; }
+
+    /* Khung giấy viền kép */
+    .paper {
+        @apply relative bg-surface shadow-paper;
+        border: 1px solid var(--rule);
+        outline: 1px solid var(--rule);
+        outline-offset: -6px;
+    }
+
+    .eyebrow {
+        @apply text-xs font-semibold uppercase text-muted;
+        letter-spacing: 0.18em;
+    }
+
+    .table-classic th {
+        @apply border-b-2 border-rule px-4 py-2 text-left text-xs font-semibold uppercase text-muted;
+        letter-spacing: 0.12em;
+    }
+    .table-classic td { @apply border-b border-rule/60 px-4 py-3 align-top; }
+}
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+@keyframes stamp {
+    0% { opacity: 0; transform: scale(2) rotate(-14deg); }
+    60% { opacity: 1; transform: scale(0.94) rotate(-6deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-6deg); }
+}
+.animate-rise { animation: rise 0.4s ease-out both; }
+.animate-stamp { animation: stamp 0.45s cubic-bezier(.2,.9,.3,1.2) both; }
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+}

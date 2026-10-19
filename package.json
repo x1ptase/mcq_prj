@@ -1,29 +1,15 @@
 {
   "name": "mcq_project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/server.js",
+  "version": "2.0.0",
+  "private": true,
+  "workspaces": ["backend", "frontend"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build && node dist/server.js",
-    "build": "tsc -p . && tsc -p src/client",
-    "dev": "tsx watch src/server.ts",
-    "typecheck": "tsc -p . --noEmit && tsc -p src/client --noEmit"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "body-parser": "^2.2.1",
-    "express": "^5.2.1",
-    "mssql": "^12.2.0"
+    "dev": "concurrently -n api,web -c blue,magenta \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w backend && npm run build -w frontend",
+    "start": "FRONTEND_DIST=frontend/dist npm run start -w backend",
+    "typecheck": "npm run typecheck -w backend && npm run typecheck -w frontend"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6",
-    "@types/mssql": "^12.3.0",
-    "@types/node": "^26.6.5",
-    "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "concurrently": "^9.0.0"
   }
 }
